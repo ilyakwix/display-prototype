@@ -59,6 +59,7 @@ const colorGroups: ColorGroup[] = [
 export default function Home() {
   const [hoveredColorInfo, setHoveredColorInfo] = useState<string | null>(null);
   const [showAllColors, setShowAllColors] = useState<boolean>(false);
+  const [isSwatchView, setIsSwatchView] = useState<boolean>(false);
 
   const handleMouseEnter = (colorIndex: number) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
@@ -96,6 +97,19 @@ export default function Home() {
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Content className={styles.dropdownContent}>
+          <div className={styles.stickyHeader}>
+            {hoveredColorInfo ? (
+              <Text size="1">{hoveredColorInfo}</Text>
+            ) : (
+              <Flex align="center" gap="2" className={styles.switchContainer}>
+                <label htmlFor="swatch-view" className={styles.switchLabel}>
+                  <Text size="1">Swatch View</Text>
+                </label>
+                <Switch id="swatch-view" checked={isSwatchView} onCheckedChange={setIsSwatchView} size="1" />
+              </Flex>
+            )}
+          </div>
+
           {colorGroups.map((group, groupIndex) => {
             const filteredColors = group.colors.filter((color, colorIndex) => shouldShowColor(colorIndex));
 
@@ -103,25 +117,32 @@ export default function Home() {
 
             return (
               <React.Fragment key={group.name}>
-                <DropdownMenu.Group className={styles.colorGroup}>
+                <DropdownMenu.Group className={`${styles.colorGroup} ${isSwatchView ? styles.swatchViewGroup : ""}`}>
                   {filteredColors.map((color) => {
                     const colorIndex = group.colors.indexOf(color);
 
                     return (
                       <DropdownMenu.Item
                         key={color.label}
-                        className={styles.colorItem}
+                        className={isSwatchView ? styles.swatchViewColorItem : styles.colorItem}
                         onSelect={() => {
                           console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
                         }}
                         onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
                         onMouseLeave={handleMouseLeave}
+                        aria-label={isSwatchView ? color.label : undefined}
                       >
-                        <div className={styles.colorInfo}>
+                        {isSwatchView ? (
                           <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
-                          <span className={styles.colorLabel}>{color.label}</span>
-                        </div>
-                        <span className={styles.colorBadge}>{color.badgeName}</span>
+                        ) : (
+                          <>
+                            <div className={styles.colorInfo}>
+                              <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                              <span className={styles.colorLabel}>{color.label}</span>
+                            </div>
+                            <span className={styles.colorBadge}>{color.badgeName}</span>
+                          </>
+                        )}
                       </DropdownMenu.Item>
                     );
                   })}
@@ -132,16 +153,12 @@ export default function Home() {
           })}
 
           <div className={styles.stickyFooter}>
-            {hoveredColorInfo ? (
-              <Text size="1">{hoveredColorInfo}</Text>
-            ) : (
-              <Flex align="center" gap="2" className={styles.switchContainer}>
-                <label htmlFor="show-all-colors" className={styles.switchLabel}>
-                  <Text size="1">Show all colors</Text>
-                </label>
-                <Switch id="show-all-colors" checked={showAllColors} onCheckedChange={setShowAllColors} size="1" />
-              </Flex>
-            )}
+            <Flex align="center" gap="2" className={styles.switchContainer}>
+              <label htmlFor="show-all-colors" className={styles.switchLabel}>
+                <Text size="1">Show all colors</Text>
+              </label>
+              <Switch id="show-all-colors" checked={showAllColors} onCheckedChange={setShowAllColors} size="1" />
+            </Flex>
           </div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
