@@ -139,10 +139,14 @@ export default function Home() {
                         }}
                         onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
                         onMouseLeave={handleMouseLeave}
-                        aria-label={isSwatchView ? color.label : undefined}
+                        aria-label={`${color.label} - ${color.badgeName}`}
                       >
                         {isSwatchView ? (
-                          <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                          <>
+                            <div className={styles.swatchViewColorSwatch} style={{ backgroundColor: color.value }} />
+                            <Text className={styles.swatchViewColorName}>{color.label}</Text>
+                            <Text className={styles.swatchViewColorBadge}>{color.badgeName}</Text>
+                          </>
                         ) : (
                           <>
                             <div className={styles.colorInfo}>
