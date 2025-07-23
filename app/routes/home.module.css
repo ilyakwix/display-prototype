@@ -35,7 +35,7 @@
   width: 300px;
   max-height: 400px;
   overflow-y: auto;
-  padding-bottom: var(--space-7);
+  padding-bottom: var(--space-8);
   padding-top: var(--space-7);
 }
 
@@ -59,7 +59,7 @@
   right: 0;
   padding-left: var(--space-3);
   padding-right: var(--space-3);
-  min-height: var(--space-7);
+  height: var(--space-8);
   z-index: 1;
   font-size: var(--font-size-1);
   color: var(--color-base-text-strong);
@@ -118,9 +118,7 @@
 
 .swatchViewColorItem {
   cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -123,7 +123,7 @@ export default function Home() {
                   )}
                 </IconButton>
               </Tooltip>
-              <Tooltip content={showAllColors ? "Show Fewer Colors" : "Show All Colors"}>
+              <Tooltip content={showAllColors ? "Show Text Colors" : "Show All Colors"}>
                 <IconButton
                   variant="ghost"
                   size="1"
