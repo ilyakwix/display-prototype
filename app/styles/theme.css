@@ -1,0 +1,253 @@
+:root {
+  /* Base color palette - semantic mapping */
+  --color-base-bg-app: var(--gray-1);
+  --color-base-bg-subtle: var(--gray-2);
+  --color-base-bg: var(--gray-3);
+  --color-base-bg-hover: var(--gray-4);
+  --color-base-bg-active: var(--gray-5);
+  --color-base-border-subtle: var(--gray-6);
+  --color-base-border: var(--gray-7);
+  --color-base-border-hover: var(--gray-8);
+  --color-base-text-muted: var(--gray-9);
+  --color-base-text-subtle: var(--gray-10);
+  --color-base-text: var(--gray-11);
+  --color-base-text-strong: var(--gray-12);
+
+  /* Accent color palette - semantic mapping */
+  --color-accent-bg-app: var(--blue-1);
+  --color-accent-bg-subtle: var(--blue-2);
+  --color-accent-bg: var(--blue-3);
+  --color-accent-bg-hover: var(--blue-4);
+  --color-accent-bg-active: var(--blue-5);
+  --color-accent-border-subtle: var(--blue-6);
+  --color-accent-border: var(--blue-7);
+  --color-accent-border-hover: var(--blue-8);
+  --color-accent-text-muted: var(--blue-9);
+  --color-accent-text-subtle: var(--blue-10);
+  --color-accent-text: var(--blue-11);
+  --color-accent-text-strong: var(--blue-12);
+
+  /* Pop color - for elements that need to stand out */
+  --color-pop-bg: var(--orange-9);
+  --color-pop-bg-hover: var(--orange-10);
+  --color-pop-text: var(--orange-13);
+
+  /* Danger color - for error states and destructive actions */
+  --color-danger-bg: var(--red-9);
+  --color-danger-bg-hover: var(--red-10);
+  --color-danger-text: var(--red-13);
+
+  /* Success color - for success states and positive feedback */
+  --color-success-bg: var(--green-9);
+  --color-success-bg-hover: var(--green-10);
+  --color-success-text: var(--green-13);
+
+  /* Typography semantic variables */
+  --font-display: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --font-subheading: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-caption: var(--font-sans);
+  --font-code: var(--font-mono);
+}
+
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Base color palette - dark mode */
+    --color-base-bg-app: var(--dark-gray-1);
+    --color-base-bg-subtle: var(--dark-gray-2);
+    --color-base-bg: var(--dark-gray-3);
+    --color-base-bg-hover: var(--dark-gray-4);
+    --color-base-bg-active: var(--dark-gray-5);
+    --color-base-border-subtle: var(--dark-gray-6);
+    --color-base-border: var(--dark-gray-7);
+    --color-base-border-hover: var(--dark-gray-8);
+    --color-base-text-muted: var(--dark-gray-9);
+    --color-base-text-subtle: var(--dark-gray-10);
+    --color-base-text: var(--dark-gray-11);
+    --color-base-text-strong: var(--dark-gray-12);
+
+    /* Accent color palette - dark mode */
+    --color-accent-bg-app: var(--dark-blue-1);
+    --color-accent-bg-subtle: var(--dark-blue-2);
+    --color-accent-bg: var(--dark-blue-3);
+    --color-accent-bg-hover: var(--dark-blue-4);
+    --color-accent-bg-active: var(--dark-blue-5);
+    --color-accent-border-subtle: var(--dark-blue-6);
+    --color-accent-border: var(--dark-blue-7);
+    --color-accent-border-hover: var(--dark-blue-8);
+    --color-accent-text-muted: var(--dark-blue-9);
+    --color-accent-text-subtle: var(--dark-blue-10);
+    --color-accent-text: var(--dark-blue-11);
+    --color-accent-text-strong: var(--dark-blue-12);
+
+    /* Pop color - dark mode */
+    --color-pop-bg: var(--dark-orange-9);
+    --color-pop-bg-hover: var(--dark-orange-10);
+    --color-pop-text: var(--dark-orange-13);
+
+    /* Danger color - dark mode */
+    --color-danger-bg: var(--dark-red-9);
+    --color-danger-bg-hover: var(--dark-red-10);
+    --color-danger-text: var(--dark-red-13);
+
+    /* Success color - dark mode */
+    --color-success-bg: var(--dark-green-9);
+    --color-success-bg-hover: var(--dark-green-10);
+    --color-success-text: var(--dark-green-13);
+  }
+}
+
+/* Light theme class overrides */
+:global(.light-theme) {
+  --color-base-bg-app: var(--gray-1);
+  --color-base-bg-subtle: var(--gray-2);
+  --color-base-bg: var(--gray-3);
+  --color-base-bg-hover: var(--gray-4);
+  --color-base-bg-active: var(--gray-5);
+  --color-base-border-subtle: var(--gray-6);
+  --color-base-border: var(--gray-7);
+  --color-base-border-hover: var(--gray-8);
+  --color-base-text-muted: var(--gray-9);
+  --color-base-text-subtle: var(--gray-10);
+  --color-base-text: var(--gray-11);
+  --color-base-text-strong: var(--gray-12);
+
+  --color-accent-bg-app: var(--blue-1);
+  --color-accent-bg-subtle: var(--blue-2);
+  --color-accent-bg: var(--blue-3);
+  --color-accent-bg-hover: var(--blue-4);
+  --color-accent-bg-active: var(--blue-5);
+  --color-accent-border-subtle: var(--blue-6);
+  --color-accent-border: var(--blue-7);
+  --color-accent-border-hover: var(--blue-8);
+  --color-accent-text-muted: var(--blue-9);
+  --color-accent-text-subtle: var(--blue-10);
+  --color-accent-text: var(--blue-11);
+  --color-accent-text-strong: var(--blue-12);
+
+  --color-pop-bg: var(--orange-9);
+  --color-pop-bg-hover: var(--orange-10);
+  --color-pop-text: var(--orange-13);
+
+  --color-danger-bg: var(--red-9);
+  --color-danger-bg-hover: var(--red-10);
+  --color-danger-text: var(--red-13);
+
+  --color-success-bg: var(--green-9);
+  --color-success-bg-hover: var(--green-10);
+  --color-success-text: var(--green-13);
+}
+
+/* Dark theme class overrides */
+:global(.dark-theme) {
+  --color-base-bg-app: var(--dark-gray-1);
+  --color-base-bg-subtle: var(--dark-gray-2);
+  --color-base-bg: var(--dark-gray-3);
+  --color-base-bg-hover: var(--dark-gray-4);
+  --color-base-bg-active: var(--dark-gray-5);
+  --color-base-border-subtle: var(--dark-gray-6);
+  --color-base-border: var(--dark-gray-7);
+  --color-base-border-hover: var(--dark-gray-8);
+  --color-base-text-muted: var(--dark-gray-9);
+  --color-base-text-subtle: var(--dark-gray-10);
+  --color-base-text: var(--dark-gray-11);
+  --color-base-text-strong: var(--dark-gray-12);
+
+  --color-accent-bg-app: var(--dark-blue-1);
+  --color-accent-bg-subtle: var(--dark-blue-2);
+  --color-accent-bg: var(--dark-blue-3);
+  --color-accent-bg-hover: var(--dark-blue-4);
+  --color-accent-bg-active: var(--dark-blue-5);
+  --color-accent-border-subtle: var(--dark-blue-6);
+  --color-accent-border: var(--dark-blue-7);
+  --color-accent-border-hover: var(--dark-blue-8);
+  --color-accent-text-muted: var(--dark-blue-9);
+  --color-accent-text-subtle: var(--dark-blue-10);
+  --color-accent-text: var(--dark-blue-11);
+  --color-accent-text-strong: var(--dark-blue-12);
+
+  --color-pop-bg: var(--dark-orange-9);
+  --color-pop-bg-hover: var(--dark-orange-10);
+  --color-pop-text: var(--dark-orange-13);
+
+  --color-danger-bg: var(--dark-red-9);
+  --color-danger-bg-hover: var(--dark-red-10);
+  --color-danger-text: var(--dark-red-13);
+
+  --color-success-bg: var(--dark-green-9);
+  --color-success-bg-hover: var(--dark-green-10);
+  --color-success-text: var(--dark-green-13);
+}
+
+/* Global styles */
+body {
+  background-color: var(--color-base-bg-app);
+  color: var(--color-base-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-base-text-strong);
+  line-height: var(--font-lineheight-1);
+}
+
+h1 {
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-7);
+}
+
+h2 {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-6);
+}
+
+h3 {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-6);
+}
+
+h4 {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-5);
+}
+
+h5 {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-5);
+}
+
+h6 {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+}
+
+code {
+  font-family: var(--font-code);
+  background-color: var(--color-base-bg);
+  padding: var(--space-0-25) var(--space-0-5);
+  border-radius: var(--radius-2);
+  font-size: 0.9em;
+}
+
+pre {
+  font-family: var(--font-code);
+  background-color: var(--color-base-bg);
+  padding: var(--space-2);
+  border-radius: var(--radius-3);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
