@@ -82,6 +82,18 @@ export default function Home() {
     return color.label.toLowerCase().includes(query) || color.badgeName.toLowerCase().includes(query);
   };
 
+  const shouldDisplayColor = (color: ColorOption, colorIndex: number): boolean => {
+    const hasSearchQuery = searchQuery.trim().length > 0;
+
+    // If there's a search query, show all colors that match the search
+    if (hasSearchQuery) {
+      return matchesSearch(color);
+    }
+
+    // If no search query, use the "Show all colors" toggle logic
+    return shouldShowColor(colorIndex);
+  };
+
   const handleDropdownOpenChange = (open: boolean) => {
     if (!open) {
       // Reset to condensed view when dropdown closes
@@ -126,16 +138,14 @@ export default function Home() {
           </div>
 
           {colorGroups.map((group, groupIndex) => {
-            const filteredColors = group.colors.filter(
-              (color, colorIndex) => shouldShowColor(colorIndex) && matchesSearch(color),
-            );
+            const filteredColors = group.colors.filter((color, colorIndex) => shouldDisplayColor(color, colorIndex));
 
             if (filteredColors.length === 0) return null;
 
             return (
               <React.Fragment key={group.name}>
                 <DropdownMenu.Group className={styles.colorGroup}>
-                  {filteredColors.map((color, originalIndex) => {
+                  {filteredColors.map((color) => {
                     const colorIndex = group.colors.indexOf(color);
 
                     return (
