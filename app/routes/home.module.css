@@ -46,9 +46,6 @@
   right: 0;
   padding: var(--space-3);
   z-index: 2;
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-5);
-  color: var(--color-base-text-strong);
   border-bottom: 1px solid var(--color-base-border-subtle);
   background-color: var(--gray-1);
   border-top-right-radius: var(--radius-4);
@@ -63,24 +60,12 @@
   padding: var(--space-3);
   z-index: 1;
   font-size: var(--font-size-1);
-  font-weight: var(--font-weight-5);
   color: var(--color-base-text-strong);
   border-top: 1px solid var(--color-base-border-subtle);
   background-color: var(--gray-1);
   border-bottom-right-radius: var(--radius-4);
   border-bottom-left-radius: var(--radius-4);
-}
-
-.switchContainer {
-  width: 100%;
-  justify-content: space-between;
-}
-
-.switchLabel {
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-5);
-  color: var(--color-base-text-strong);
-  cursor: pointer;
+  text-align: center;
 }
 
 .colorGroup {
@@ -123,7 +108,9 @@
   padding: 0;
   cursor: pointer;
   border-radius: var(--radius-2);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;

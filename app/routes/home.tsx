@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { GridIcon, ListBulletIcon, PlusIcon, MinusIcon } from "@radix-ui/react-icons";
 import styles from "./home.module.css";
-import { DropdownMenu, Switch, Text, Flex } from "@radix-ui/themes";
+import { DropdownMenu, IconButton, Text, Flex } from "@radix-ui/themes";
 
 interface ColorOption {
   label: string;
@@ -98,16 +99,24 @@ export default function Home() {
 
         <DropdownMenu.Content className={styles.dropdownContent}>
           <div className={styles.stickyHeader}>
-            {hoveredColorInfo ? (
-              <Text size="1">{hoveredColorInfo}</Text>
-            ) : (
-              <Flex align="center" gap="2" className={styles.switchContainer}>
-                <label htmlFor="swatch-view" className={styles.switchLabel}>
-                  <Text size="1">Swatch View</Text>
-                </label>
-                <Switch id="swatch-view" checked={isSwatchView} onCheckedChange={setIsSwatchView} size="1" />
-              </Flex>
-            )}
+            <Flex align="center" gap="2" justify="end">
+              <IconButton
+                variant="ghost"
+                size="1"
+                onClick={() => setIsSwatchView(!isSwatchView)}
+                aria-label={isSwatchView ? "Switch to List View" : "Switch to Swatch View"}
+              >
+                {isSwatchView ? <ListBulletIcon /> : <GridIcon />}
+              </IconButton>
+              <IconButton
+                variant="ghost"
+                size="1"
+                onClick={() => setShowAllColors(!showAllColors)}
+                aria-label={showAllColors ? "Show Less Colors" : "Show All Colors"}
+              >
+                {showAllColors ? <MinusIcon /> : <PlusIcon />}
+              </IconButton>
+            </Flex>
           </div>
 
           {colorGroups.map((group, groupIndex) => {
@@ -153,12 +162,7 @@ export default function Home() {
           })}
 
           <div className={styles.stickyFooter}>
-            <Flex align="center" gap="2" className={styles.switchContainer}>
-              <label htmlFor="show-all-colors" className={styles.switchLabel}>
-                <Text size="1">Show all colors</Text>
-              </label>
-              <Switch id="show-all-colors" checked={showAllColors} onCheckedChange={setShowAllColors} size="1" />
-            </Flex>
+            <Text size="1">{hoveredColorInfo || "Select a color"}</Text>
           </div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
