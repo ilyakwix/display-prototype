@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Grid3X3Icon, ListIcon, Rows3Icon, SwatchBookIcon, TypeIcon } from "lucide-react";
 import { GridIcon, ListBulletIcon, PlusIcon, MinusIcon } from "@radix-ui/react-icons";
 import styles from "./home.module.css";
 import { DropdownMenu, IconButton, Text, Flex } from "@radix-ui/themes";
@@ -107,22 +107,28 @@ export default function Home() {
 
         <DropdownMenu.Content className={styles.dropdownContent}>
           <div className={styles.stickyHeader}>
-            <Flex align="center" gap="2" justify="end">
+            <Flex align="center" gap="3" justify="end">
               <IconButton
                 variant="ghost"
                 size="1"
+                color="gray"
                 onClick={() => setIsSwatchView(!isSwatchView)}
                 aria-label={isSwatchView ? "Switch to List View" : "Switch to Swatch View"}
               >
-                {isSwatchView ? <ListBulletIcon /> : <GridIcon />}
+                {isSwatchView ? <Rows3Icon size={16} strokeWidth={1.5} /> : <Grid3X3Icon size={16} strokeWidth={1.5} />}
               </IconButton>
               <IconButton
                 variant="ghost"
                 size="1"
+                color="gray"
                 onClick={() => setShowAllColors(!showAllColors)}
                 aria-label={showAllColors ? "Show Less Colors" : "Show All Colors"}
               >
-                {showAllColors ? <MinusIcon /> : <PlusIcon />}
+                {showAllColors ? (
+                  <TypeIcon size={16} strokeWidth={1.5} />
+                ) : (
+                  <SwatchBookIcon size={16} strokeWidth={1.5} />
+                )}
               </IconButton>
             </Flex>
           </div>
