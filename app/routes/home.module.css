@@ -32,11 +32,19 @@
 }
 
 .dropdownContent {
-  width: 300px;
+  width: 276px;
   max-height: 400px;
   overflow-y: auto;
-  padding-bottom: var(--space-8);
+
   padding-top: var(--space-7);
+
+  &.isInSwatchView {
+    padding-bottom: var(--space-8);
+  }
+
+  &:not(.isInSwatchView) {
+    padding-bottom: var(--space-6);
+  }
 }
 
 .stickyHeader {
@@ -59,7 +67,7 @@
   right: 0;
   padding-left: var(--space-3);
   padding-right: var(--space-3);
-  height: var(--space-8);
+
   z-index: 1;
   font-size: var(--font-size-1);
   color: var(--color-base-text-strong);
@@ -72,6 +80,14 @@
   align-items: start;
   justify-content: center;
   gap: var(--space-0-5);
+
+  &.isInSwatchView {
+    height: var(--space-8);
+  }
+
+  &:not(.isInSwatchView) {
+    height: var(--space-6);
+  }
 }
 
 .hoveredColorName {

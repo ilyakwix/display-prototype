@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { ChevronDown, Grid3X3Icon, ListIcon, Rows3Icon, SwatchBookIcon, TypeIcon } from "lucide-react";
-import { GridIcon, ListBulletIcon, PlusIcon, MinusIcon } from "@radix-ui/react-icons";
+import { ChevronDown, Grid3X3Icon, Rows3Icon, SwatchBookIcon, TypeIcon } from "lucide-react";
 import styles from "./home.module.css";
+import classNames from "classnames";
 import { DropdownMenu, IconButton, Text, Flex, Tooltip } from "@radix-ui/themes";
 
 interface ColorOption {
@@ -105,7 +105,9 @@ export default function Home() {
           </button>
         </DropdownMenu.Trigger>
 
-        <DropdownMenu.Content className={styles.dropdownContent}>
+        <DropdownMenu.Content
+          className={classNames(styles.dropdownContent, { [styles.isInSwatchView!]: isSwatchView })}
+        >
           <div className={styles.stickyHeader}>
             <Flex align="center" gap="3" justify="end">
               <Tooltip content={isSwatchView ? "Switch to List View" : "Switch to Swatch View"}>
@@ -183,7 +185,7 @@ export default function Home() {
             );
           })}
 
-          <div className={styles.stickyFooter}>
+          <div className={classNames(styles.stickyFooter, { [styles.isInSwatchView!]: isSwatchView })}>
             {isSwatchView && hoveredColorInfo && (
               <Text size="1" className={styles.hoveredColorName}>
                 {hoveredColorInfo.label}
