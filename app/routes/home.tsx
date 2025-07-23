@@ -16,7 +16,7 @@ interface ColorGroup {
 }
 
 interface HoveredColorInfo {
-  badgeName: string;
+  label: string;
   description: string;
 }
 
@@ -70,7 +70,7 @@ export default function Home() {
   const handleMouseEnter = (colorIndex: number, color: ColorOption) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
     setHoveredColorInfo({
-      badgeName: color.badgeName,
+      label: color.label,
       description: usageGuidance,
     });
   };
@@ -172,7 +172,7 @@ export default function Home() {
           <div className={styles.stickyFooter}>
             {isSwatchView && hoveredColorInfo && (
               <Text size="1" className={styles.hoveredColorName}>
-                {hoveredColorInfo.badgeName}
+                {hoveredColorInfo.label}
               </Text>
             )}
             <Text size="1" className={styles.hoveredColorDescription}>
