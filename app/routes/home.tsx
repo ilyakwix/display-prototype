@@ -103,6 +103,22 @@ export default function Home() {
     }
   };
 
+  const handlePointerDownOutside = (event: Event) => {
+    const target = event.target as Element;
+    // Check if the clicked element is within the search container
+    if (target.closest(`.${styles.searchContainer}`)) {
+      event.preventDefault();
+    }
+  };
+
+  const handleFocusOutside = (event: Event) => {
+    const target = event.target as Element;
+    // Check if the focused element is within the search container
+    if (target.closest(`.${styles.searchContainer}`)) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Radix Colors Dropdown Menu</h1>
@@ -115,7 +131,11 @@ export default function Home() {
           </button>
         </DropdownMenu.Trigger>
 
-        <DropdownMenu.Content className={styles.dropdownContent}>
+        <DropdownMenu.Content
+          className={styles.dropdownContent}
+          onPointerDownOutside={handlePointerDownOutside}
+          onFocusOutside={handleFocusOutside}
+        >
           <div className={styles.searchContainer}>
             <TextField.Root>
               <TextField.Slot>
