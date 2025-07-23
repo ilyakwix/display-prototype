@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown, Grid3X3Icon, ListIcon, Rows3Icon, SwatchBookIcon, TypeIcon } from "lucide-react";
 import { GridIcon, ListBulletIcon, PlusIcon, MinusIcon } from "@radix-ui/react-icons";
 import styles from "./home.module.css";
-import { DropdownMenu, IconButton, Text, Flex } from "@radix-ui/themes";
+import { DropdownMenu, IconButton, Text, Flex, Tooltip } from "@radix-ui/themes";
 
 interface ColorOption {
   label: string;
@@ -108,28 +108,36 @@ export default function Home() {
         <DropdownMenu.Content className={styles.dropdownContent}>
           <div className={styles.stickyHeader}>
             <Flex align="center" gap="3" justify="end">
-              <IconButton
-                variant="ghost"
-                size="1"
-                color="gray"
-                onClick={() => setIsSwatchView(!isSwatchView)}
-                aria-label={isSwatchView ? "Switch to List View" : "Switch to Swatch View"}
-              >
-                {isSwatchView ? <Rows3Icon size={16} strokeWidth={1.5} /> : <Grid3X3Icon size={16} strokeWidth={1.5} />}
-              </IconButton>
-              <IconButton
-                variant="ghost"
-                size="1"
-                color="gray"
-                onClick={() => setShowAllColors(!showAllColors)}
-                aria-label={showAllColors ? "Show Less Colors" : "Show All Colors"}
-              >
-                {showAllColors ? (
-                  <TypeIcon size={16} strokeWidth={1.5} />
-                ) : (
-                  <SwatchBookIcon size={16} strokeWidth={1.5} />
-                )}
-              </IconButton>
+              <Tooltip content={isSwatchView ? "Switch to List View" : "Switch to Swatch View"}>
+                <IconButton
+                  variant="ghost"
+                  size="1"
+                  color="gray"
+                  onClick={() => setIsSwatchView(!isSwatchView)}
+                  aria-label={isSwatchView ? "Switch to List View" : "Switch to Swatch View"}
+                >
+                  {isSwatchView ? (
+                    <Rows3Icon size={16} strokeWidth={1.5} />
+                  ) : (
+                    <Grid3X3Icon size={16} strokeWidth={1.5} />
+                  )}
+                </IconButton>
+              </Tooltip>
+              <Tooltip content={showAllColors ? "Show Fewer Colors" : "Show All Colors"}>
+                <IconButton
+                  variant="ghost"
+                  size="1"
+                  color="gray"
+                  onClick={() => setShowAllColors(!showAllColors)}
+                  aria-label={showAllColors ? "Show Less Colors" : "Show All Colors"}
+                >
+                  {showAllColors ? (
+                    <TypeIcon size={16} strokeWidth={1.5} />
+                  ) : (
+                    <SwatchBookIcon size={16} strokeWidth={1.5} />
+                  )}
+                </IconButton>
+              </Tooltip>
             </Flex>
           </div>
 
