@@ -180,7 +180,9 @@ export default function Home() {
                     );
                   })}
                 </DropdownMenu.Group>
-                {groupIndex < colorGroups.length - 1 && filteredColors.length > 0 && <DropdownMenu.Separator />}
+                {!isSwatchView && groupIndex < colorGroups.length - 1 && filteredColors.length > 0 && (
+                  <DropdownMenu.Separator />
+                )}
               </React.Fragment>
             );
           })}
