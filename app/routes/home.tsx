@@ -40,7 +40,35 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Radix Colors Dropdown Menu</h1>
-      <DropdownMenu.Root>Dropdown</DropdownMenu.Root>
+
+      <DropdownMenu.Root>
+        <DropdownMenu.Trigger>
+          <button className={styles.dropdownTrigger}>
+            Select Color
+            <ChevronDown size={16} />
+          </button>
+        </DropdownMenu.Trigger>
+
+        <DropdownMenu.Content className={styles.dropdownContent}>
+          {colorGroups.map((group) => (
+            <DropdownMenu.Group key={group.name} className={styles.colorGroup}>
+              <DropdownMenu.Label className={styles.groupLabel}>{group.name}</DropdownMenu.Label>
+              {group.colors.map((color) => (
+                <DropdownMenu.Item
+                  key={color.label}
+                  className={styles.colorItem}
+                  onSelect={() => {
+                    console.log(`Selected: ${color.label} - ${color.value}`);
+                  }}
+                >
+                  <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                  <span className={styles.colorLabel}>{color.label}</span>
+                </DropdownMenu.Item>
+              ))}
+            </DropdownMenu.Group>
+          ))}
+        </DropdownMenu.Content>
+      </DropdownMenu.Root>
     </div>
   );
 }
