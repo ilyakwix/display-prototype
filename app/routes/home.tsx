@@ -5,6 +5,7 @@ import { DropdownMenu } from "@radix-ui/themes";
 interface ColorOption {
   label: string;
   value: string;
+  badgeName: string;
 }
 
 interface ColorGroup {
@@ -18,6 +19,7 @@ const colorGroups: ColorGroup[] = [
     colors: Array.from({ length: 12 }, (_, i) => ({
       label: `Neutral ${i + 1}`,
       value: `var(--gray-${i + 1})`,
+      badgeName: `Slate ${i + 1}`,
     })),
   },
   {
@@ -25,6 +27,7 @@ const colorGroups: ColorGroup[] = [
     colors: Array.from({ length: 12 }, (_, i) => ({
       label: `Accent ${i + 1}`,
       value: `var(--blue-${i + 1})`,
+      badgeName: `Indigo ${i + 1}`,
     })),
   },
   {
@@ -32,6 +35,7 @@ const colorGroups: ColorGroup[] = [
     colors: Array.from({ length: 12 }, (_, i) => ({
       label: `Focus ${i + 1}`,
       value: `var(--red-${i + 1})`,
+      badgeName: `Red ${i + 1}`,
     })),
   },
 ];
@@ -58,11 +62,14 @@ export default function Home() {
                   key={color.label}
                   className={styles.colorItem}
                   onSelect={() => {
-                    console.log(`Selected: ${color.label} - ${color.value}`);
+                    console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
                   }}
                 >
-                  <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
-                  <span className={styles.colorLabel}>{color.label}</span>
+                  <div className={styles.colorInfo}>
+                    <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                    <span className={styles.colorLabel}>{color.label}</span>
+                  </div>
+                  <span className={styles.colorBadge}>{color.badgeName}</span>
                 </DropdownMenu.Item>
               ))}
             </DropdownMenu.Group>

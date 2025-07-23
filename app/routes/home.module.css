@@ -53,6 +53,7 @@
 .colorItem {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-2);
   padding: var(--space-1-5) var(--space-2);
   cursor: pointer;
@@ -61,6 +62,13 @@
 
 .colorItem:hover {
   background-color: var(--color-base-bg-hover);
+}
+
+.colorInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
 }
 
 .colorSwatch {
@@ -74,4 +82,15 @@
 .colorLabel {
   font-size: var(--font-size-1);
   color: var(--color-base-text);
+}
+
+.colorBadge {
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-5);
+  color: var(--color-base-text-muted);
+  background-color: var(--color-base-bg-subtle);
+  padding: var(--space-0-25) var(--space-0-5);
+  border-radius: var(--radius-1);
+  border: 1px solid var(--color-base-border-subtle);
+  flex-shrink: 0;
 }
