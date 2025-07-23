@@ -58,6 +58,7 @@ const colorGroups: ColorGroup[] = [
 
 export default function Home() {
   const [hoveredColor, setHoveredColor] = useState<string>("Select a color");
+  const [showAllColors, setShowAllColors] = useState<boolean>(false);
 
   const handleMouseEnter = (colorIndex: number) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
@@ -68,11 +69,29 @@ export default function Home() {
     setHoveredColor("Select a color");
   };
 
+  const shouldShowColor = (colorIndex: number): boolean => {
+    if (showAllColors) return true;
+    // Show colors 1, 2, 10, 11, 12 (indices 0, 1, 9, 10, 11)
+    return colorIndex === 0 || colorIndex === 1 || colorIndex >= 9;
+  };
+
+  const handleShowAll = () => {
+    setShowAllColors(true);
+  };
+
+  const handleDropdownOpenChange = (open: boolean) => {
+    if (!open) {
+      // Reset to condensed view when dropdown closes
+      setShowAllColors(false);
+      setHoveredColor("Select a color");
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Radix Colors Dropdown Menu</h1>
 
-      <DropdownMenu.Root>
+      <DropdownMenu.Root onOpenChange={handleDropdownOpenChange}>
         <DropdownMenu.Trigger>
           <button className={styles.dropdownTrigger}>
             Select Color
@@ -84,27 +103,42 @@ export default function Home() {
           {colorGroups.map((group, groupIndex) => (
             <React.Fragment key={group.name}>
               <DropdownMenu.Group className={styles.colorGroup}>
-                {group.colors.map((color, colorIndex) => (
-                  <DropdownMenu.Item
-                    key={color.label}
-                    className={styles.colorItem}
-                    onSelect={() => {
-                      console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
-                    }}
-                    onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <div className={styles.colorInfo}>
-                      <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
-                      <span className={styles.colorLabel}>{color.label}</span>
-                    </div>
-                    <span className={styles.colorBadge}>{color.badgeName}</span>
-                  </DropdownMenu.Item>
-                ))}
+                {group.colors.map((color, colorIndex) => {
+                  if (!shouldShowColor(colorIndex)) return null;
+
+                  return (
+                    <DropdownMenu.Item
+                      key={color.label}
+                      className={styles.colorItem}
+                      onSelect={() => {
+                        console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
+                      }}
+                      onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <div className={styles.colorInfo}>
+                        <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                        <span className={styles.colorLabel}>{color.label}</span>
+                      </div>
+                      <span className={styles.colorBadge}>{color.badgeName}</span>
+                    </DropdownMenu.Item>
+                  );
+                })}
               </DropdownMenu.Group>
               {groupIndex < colorGroups.length - 1 && <DropdownMenu.Separator />}
             </React.Fragment>
           ))}
+
+          {!showAllColors && (
+            <DropdownMenu.Item
+              className={styles.showAllButton}
+              onSelect={handleShowAll}
+              aria-label="Show all color shades"
+            >
+              Show all
+            </DropdownMenu.Item>
+          )}
+
           <div className={styles.stickyFooter}>{hoveredColor}</div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
