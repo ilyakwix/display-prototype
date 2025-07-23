@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  font: var(--font-heading);
+  color: var(--color-base-text-strong);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+
+.themeCard {
+  position: relative;
+  padding: var(--space-3);
+  border: 1px solid var(--color-base-border);
+  border-radius: var(--radius-3);
+  background: var(--color-base-bg);
+  cursor: pointer;
+  transition: all var(--ease-2) 200ms;
+  overflow: hidden;
+}
+
+.themeCard:hover {
+  border-color: var(--color-base-border-hover);
+  background: var(--color-base-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
+}
+
+.themeCard.selected {
+  border-color: var(--color-accent-border);
+  background: var(--color-accent-bg-subtle);
+  box-shadow: var(--shadow-3);
+}
+
+.themeCard.selected::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-pop-bg);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-2);
+}
+
+.cardTitle {
+  font: var(--font-subheading);
+  color: var(--color-base-text-strong);
+  margin: 0;
+}
+
+.selectedBadge {
+  padding: var(--space-0-5) var(--space-1);
+  background: var(--color-pop-bg);
+  color: var(--color-pop-text);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+  text-transform: uppercase;
+  letter-spacing: var(--font-letterspacing-1);
+}
+
+.cardDescription {
+  color: var(--color-base-text-subtle);
+  font-size: var(--font-size-0);
+  margin-bottom: var(--space-3);
+  line-height: var(--font-lineheight-2);
+}
+
+.preview {
+  height: 80px;
+  border-radius: var(--radius-2);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-base-border-subtle);
+}
+
+.previewContent {
+  height: 100%;
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.previewDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.previewText {
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-5);
+  margin: 0;
+}
+
+.previewButton {
+  align-self: flex-start;
+  padding: var(--space-0-5) var(--space-1-5);
+  border-radius: var(--radius-1);
+  border: none;
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-5);
+  cursor: pointer;
+}

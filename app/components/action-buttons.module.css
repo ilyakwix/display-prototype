@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-top: 1px solid var(--color-base-border-subtle);
+  background: var(--color-base-bg-subtle);
+  border-radius: 0 0 var(--radius-3) var(--radius-3);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.button {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-1);
+  cursor: pointer;
+  transition: all var(--ease-2) 200ms;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.resetButton {
+  background: var(--color-base-bg);
+  color: var(--color-base-text);
+  border-color: var(--color-base-border);
+}
+
+.resetButton:hover {
+  background: var(--color-base-bg-hover);
+  border-color: var(--color-base-border-hover);
+}
+
+.resetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.applyButton {
+  background: var(--color-pop-bg);
+  color: var(--color-pop-text);
+  border-color: var(--color-pop-bg);
+}
+
+.applyButton:hover {
+  background: var(--color-pop-bg-hover);
+  border-color: var(--color-pop-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
+}
+
+.applyButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.changeIndicator {
+  width: 8px;
+  height: 8px;
+  background: var(--color-success-bg);
+  border-radius: 50%;
+  animation: var(--animation-pulse);
+}
+
+@media (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    gap: var(--space-1-5);
+  }
+
+  .button {
+    justify-content: center;
+  }
+}

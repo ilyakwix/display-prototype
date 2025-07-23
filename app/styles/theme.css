@@ -7,52 +7,52 @@
 
 /* Typography */
 html {
-  --font-display: var(--font-weight-9) var(--font-size-fluid-3) var(--font-transitional);
-  --font-heading: var(--font-weight-6) var(--font-size-fluid-2) var(--font-transitional);
-  --font-subheading: var(--font-weight-4) var(--font-size-fluid-1) var(--font-system-ui);
-  --font-body: var(--font-size-fluid-0) var(--font-system-ui);
-  --font-caption: var(--font-size-fluid-0) var(--font-system-ui);
-  --font-code: var(--font-size-fluid-0) var(--font-monospace-code);
+  --font-display: var(--font-weight-7) var(--font-size-fluid-3) var(--font-neo-grotesque);
+  --font-heading: var(--font-weight-6) var(--font-size-fluid-2) var(--font-neo-grotesque);
+  --font-subheading: var(--font-weight-5) var(--font-size-fluid-1) var(--font-neo-grotesque);
+  --font-body: var(--font-size-fluid-0) var(--font-neo-grotesque);
+  --font-caption: var(--font-size-0) var(--font-neo-grotesque);
+  --font-code: var(--font-size-0) var(--font-monospace-code);
 }
 
 /* Light theme colors */
 html {
   /* Base neutral colors */
-  --color-base-bg-app: var(--slate-1);
-  --color-base-bg-subtle: var(--slate-2);
-  --color-base-bg: var(--slate-3);
-  --color-base-bg-hover: var(--slate-4);
-  --color-base-bg-active: var(--slate-5);
+  --color-base-bg-app: var(--gray-1);
+  --color-base-bg-subtle: var(--gray-2);
+  --color-base-bg: var(--gray-3);
+  --color-base-bg-hover: var(--gray-4);
+  --color-base-bg-active: var(--gray-5);
 
-  --color-base-border-subtle: var(--slate-6);
-  --color-base-border: var(--slate-7);
-  --color-base-border-hover: var(--slate-8);
+  --color-base-border-subtle: var(--gray-6);
+  --color-base-border: var(--gray-7);
+  --color-base-border-hover: var(--gray-8);
 
-  --color-base-text-muted: var(--slate-9);
-  --color-base-text-subtle: var(--slate-10);
-  --color-base-text: var(--slate-11);
-  --color-base-text-strong: var(--slate-12);
+  --color-base-text-muted: var(--gray-9);
+  --color-base-text-subtle: var(--gray-10);
+  --color-base-text: var(--gray-11);
+  --color-base-text-strong: var(--gray-12);
 
   /* Accent colors */
-  --color-accent-app: var(--blue-1);
-  --color-accent-bg-subtle: var(--blue-2);
-  --color-accent-bg: var(--blue-3);
-  --color-accent-bg-hover: var(--blue-4);
-  --color-accent-bg-active: var(--blue-5);
+  --color-accent-bg-app: var(--violet-1);
+  --color-accent-bg-subtle: var(--violet-2);
+  --color-accent-bg: var(--violet-3);
+  --color-accent-bg-hover: var(--violet-4);
+  --color-accent-bg-active: var(--violet-5);
 
-  --color-accent-border-subtle: var(--blue-6);
-  --color-accent-border: var(--blue-7);
-  --color-accent-border-hover: var(--blue-8);
+  --color-accent-border-subtle: var(--violet-6);
+  --color-accent-border: var(--violet-7);
+  --color-accent-border-hover: var(--violet-8);
 
-  --color-accent-text-muted: var(--blue-9);
-  --color-accent-text-subtle: var(--blue-10);
-  --color-accent-text: var(--blue-11);
-  --color-accent-text-strong: var(--blue-12);
+  --color-accent-text-muted: var(--violet-9);
+  --color-accent-text-subtle: var(--violet-10);
+  --color-accent-text: var(--violet-11);
+  --color-accent-text-strong: var(--violet-12);
 
   /* Pop colors */
-  --color-pop-bg: var(--blue-9);
-  --color-pop-bg-hover: var(--blue-10);
-  --color-pop-text: var(--blue-13);
+  --color-pop-bg: var(--violet-9);
+  --color-pop-bg-hover: var(--violet-10);
+  --color-pop-text: var(--violet-13);
 
   /* Danger colors */
   --color-danger-bg: var(--red-9);
@@ -68,41 +68,41 @@ html {
 /* Dark theme colors */
 html.dark-theme {
   /* Base neutral colors */
-  --color-base-bg-app: var(--dark-slate-1);
-  --color-base-bg-subtle: var(--dark-slate-2);
-  --color-base-bg: var(--dark-slate-3);
-  --color-base-bg-hover: var(--dark-slate-4);
-  --color-base-bg-active: var(--dark-slate-5);
+  --color-base-bg-app: var(--dark-gray-1);
+  --color-base-bg-subtle: var(--dark-gray-2);
+  --color-base-bg: var(--dark-gray-3);
+  --color-base-bg-hover: var(--dark-gray-4);
+  --color-base-bg-active: var(--dark-gray-5);
 
-  --color-base-border-subtle: var(--dark-slate-6);
-  --color-base-border: var(--dark-slate-7);
-  --color-base-border-hover: var(--dark-slate-8);
+  --color-base-border-subtle: var(--dark-gray-6);
+  --color-base-border: var(--dark-gray-7);
+  --color-base-border-hover: var(--dark-gray-8);
 
-  --color-base-text-muted: var(--dark-slate-9);
-  --color-base-text-subtle: var(--dark-slate-10);
-  --color-base-text: var(--dark-slate-11);
-  --color-base-text-strong: var(--dark-slate-12);
+  --color-base-text-muted: var(--dark-gray-9);
+  --color-base-text-subtle: var(--dark-gray-10);
+  --color-base-text: var(--dark-gray-11);
+  --color-base-text-strong: var(--dark-gray-12);
 
   /* Accent colors */
-  --color-accent-app: var(--dark-blue-1);
-  --color-accent-bg-subtle: var(--dark-blue-2);
-  --color-accent-bg: var(--dark-blue-3);
-  --color-accent-bg-hover: var(--dark-blue-4);
-  --color-accent-bg-active: var(--dark-blue-5);
+  --color-accent-bg-app: var(--dark-violet-1);
+  --color-accent-bg-subtle: var(--dark-violet-2);
+  --color-accent-bg: var(--dark-violet-3);
+  --color-accent-bg-hover: var(--dark-violet-4);
+  --color-accent-bg-active: var(--dark-violet-5);
 
-  --color-accent-border-subtle: var(--dark-blue-6);
-  --color-accent-border: var(--dark-blue-7);
-  --color-accent-border-hover: var(--dark-blue-8);
+  --color-accent-border-subtle: var(--dark-violet-6);
+  --color-accent-border: var(--dark-violet-7);
+  --color-accent-border-hover: var(--dark-violet-8);
 
-  --color-accent-text-muted: var(--dark-blue-9);
-  --color-accent-text-subtle: var(--dark-blue-10);
-  --color-accent-text: var(--dark-blue-11);
-  --color-accent-text-strong: var(--dark-blue-12);
+  --color-accent-text-muted: var(--dark-violet-9);
+  --color-accent-text-subtle: var(--dark-violet-10);
+  --color-accent-text: var(--dark-violet-11);
+  --color-accent-text-strong: var(--dark-violet-12);
 
   /* Pop colors */
-  --color-pop-bg: var(--dark-blue-9);
-  --color-pop-bg-hover: var(--dark-blue-10);
-  --color-pop-text: var(--dark-blue-13);
+  --color-pop-bg: var(--dark-violet-9);
+  --color-pop-bg-hover: var(--dark-violet-10);
+  --color-pop-text: var(--dark-violet-13);
 
   /* Danger colors */
   --color-danger-bg: var(--dark-red-9);
@@ -120,4 +120,12 @@ html {
   font: var(--font-body);
   color: var(--color-base-text);
   background-color: var(--color-base-bg-app);
+}
+
+/* Theme customization variables */
+:root {
+  --theme-primary-color: var(--violet-9);
+  --theme-font-family: var(--font-neo-grotesque);
+  --theme-border-radius: var(--radius-2);
+  --theme-spacing: var(--space-2);
 }
