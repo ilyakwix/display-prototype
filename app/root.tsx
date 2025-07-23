@@ -3,6 +3,7 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration }
 import type { Route } from "./+types/root";
 import { Toaster } from "./components/ui/toaster/toaster";
 import colorSchemeApi from "@dazl/color-scheme/client?url";
+import { Theme } from "@radix-ui/themes";
 
 import "./styles/reset.css";
 import "./styles/tokens/utils.css";
@@ -13,6 +14,7 @@ import "./styles/tokens/sizes.css";
 import "./styles/tokens/spacings.css";
 import "./styles/tokens/typography.css";
 import "./styles/theme.css";
+import "@radix-ui/themes/styles.css";
 import { useColorScheme } from "@dazl/color-scheme/react";
 
 export const links: Route.LinksFunction = () => [
@@ -40,7 +42,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <Theme appearance="light" accentColor="iris" grayColor="sand" radius="medium" scaling="100%">
+          {children}
+        </Theme>
         <Toaster />
         <ScrollRestoration />
         <Scripts />
