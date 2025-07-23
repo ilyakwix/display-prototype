@@ -1,3 +1,4 @@
+import React from "react";
 import { ChevronDown } from "lucide-react";
 import styles from "./home.module.css";
 import { DropdownMenu } from "@radix-ui/themes";
@@ -54,25 +55,27 @@ export default function Home() {
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Content className={styles.dropdownContent}>
-          {colorGroups.map((group) => (
-            <DropdownMenu.Group key={group.name} className={styles.colorGroup}>
-              <DropdownMenu.Label className={styles.groupLabel}>{group.name}</DropdownMenu.Label>
-              {group.colors.map((color) => (
-                <DropdownMenu.Item
-                  key={color.label}
-                  className={styles.colorItem}
-                  onSelect={() => {
-                    console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
-                  }}
-                >
-                  <div className={styles.colorInfo}>
-                    <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
-                    <span className={styles.colorLabel}>{color.label}</span>
-                  </div>
-                  <span className={styles.colorBadge}>{color.badgeName}</span>
-                </DropdownMenu.Item>
-              ))}
-            </DropdownMenu.Group>
+          {colorGroups.map((group, groupIndex) => (
+            <React.Fragment key={group.name}>
+              <DropdownMenu.Group className={styles.colorGroup}>
+                {group.colors.map((color) => (
+                  <DropdownMenu.Item
+                    key={color.label}
+                    className={styles.colorItem}
+                    onSelect={() => {
+                      console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
+                    }}
+                  >
+                    <div className={styles.colorInfo}>
+                      <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                      <span className={styles.colorLabel}>{color.label}</span>
+                    </div>
+                    <span className={styles.colorBadge}>{color.badgeName}</span>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Group>
+              {groupIndex < colorGroups.length - 1 && <DropdownMenu.Separator />}
+            </React.Fragment>
           ))}
         </DropdownMenu.Content>
       </DropdownMenu.Root>
