@@ -127,13 +127,11 @@ export default function Home() {
 
           <div className={styles.stickyFooter}>
             {hoveredColorInfo ? (
-              <Text size="2" weight="medium">
-                {hoveredColorInfo}
-              </Text>
+              <Text size="1">{hoveredColorInfo}</Text>
             ) : (
               <Flex align="center" gap="2" className={styles.switchContainer}>
                 <label htmlFor="show-all-colors" className={styles.switchLabel}>
-                  Show all colors
+                  <Text size="1">Show all colors</Text>
                 </label>
                 <Switch id="show-all-colors" checked={showAllColors} onCheckedChange={setShowAllColors} size="1" />
               </Flex>
