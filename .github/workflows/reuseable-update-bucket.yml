@@ -1,0 +1,45 @@
+name: update bucket
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: environment name to use in github deployment ui
+        type: string
+        required: true
+      bucket-name:
+        required: true
+        type: string
+      region:
+        type: string
+        default: eu-west-1
+    secrets:
+      aws-role-to-assume:
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-latest-arm
+    environment:
+      name: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: repo
+
+      - run: npm ci
+        working-directory: repo
+
+      - run: >
+          tar -czf "latest.tar.gz"
+          --exclude=".github"
+          --exclude=".git"
+          -C repo
+          .
+
+      - name: Configure AWS credentials and CLI
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.aws-role-to-assume }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ inputs.region }}
+
+      - run: aws s3 cp latest.tar.gz s3://${{ inputs.bucket-name }}/snapshots/default/

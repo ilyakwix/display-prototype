@@ -1,0 +1,23 @@
+name: update template from branch
+run-name: Update ${{ inputs.environment }} from ${{ github.ref}} (${{ github.sha}})
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        default: dev
+        options:
+          - dev
+          - staging
+permissions:
+  contents: read
+  id-token: write
+  actions: write
+jobs:
+  update:
+    uses: ./.github/workflows/reuseable-update-bucket.yml
+    with:
+      environment: ${{ inputs.environment }}
+      bucket-name: dazl-${{ inputs.environment }}-projects-storage
+    secrets:
+      aws-role-to-assume: ${{ secrets.AWS_RUNNER_ROLE }}

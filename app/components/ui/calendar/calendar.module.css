@@ -1,0 +1,166 @@
+.calendar {
+  padding: var(--size-3);
+}
+
+.months {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+@media (min-width: 640px) {
+  .months {
+    flex-direction: row;
+    gap: var(--size-4) 0;
+  }
+}
+
+.month {
+  display: grid;
+  gap: var(--size-4);
+}
+
+.caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--size-1);
+  position: relative;
+}
+
+.captionLabel {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-5);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+.navButton {
+  height: var(--size-7);
+  width: var(--size-7);
+  background: transparent;
+  padding: 0;
+  opacity: 0.5;
+  transition: opacity 200ms var(--ease-3);
+}
+
+.navButton:hover {
+  opacity: 1;
+}
+
+.navButtonPrev {
+  position: absolute;
+  left: var(--size-1);
+}
+
+.navButtonNext {
+  position: absolute;
+  right: var(--size-1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  gap: var(--size-1);
+}
+
+.headRow {
+  display: flex;
+}
+
+.headCell {
+  color: var(--color-text-2);
+  border-radius: var(--radius-2);
+  width: var(--size-9);
+  font-weight: var(--font-weight-4);
+  font-size: 0.8rem;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  margin-top: var(--size-2);
+}
+
+.cell {
+  height: var(--size-9);
+  width: var(--size-9);
+  text-align: center;
+  font-size: var(--font-size-2);
+  position: relative;
+}
+
+.cell:has([aria-selected]) {
+  background: var(--color-surface-2);
+}
+
+.cell:has([aria-selected].dayRangeEnd) {
+  border-radius: 0 var(--radius-2) var(--radius-2) 0;
+}
+
+.cell:first-child:has([aria-selected]) {
+  border-radius: var(--radius-2) 0 0 var(--radius-2);
+}
+
+.cell:last-child:has([aria-selected]) {
+  border-radius: 0 var(--radius-2) var(--radius-2) 0;
+}
+
+.cell:focus-within {
+  position: relative;
+  z-index: var(--layer-2);
+}
+
+.day {
+  height: var(--size-9);
+  width: var(--size-9);
+  padding: 0;
+  font-weight: var(--font-weight-4);
+}
+
+.day[aria-selected] {
+  opacity: 1;
+}
+
+.daySelected {
+  background: var(--color-brand-1);
+  color: var(--color-surface-1);
+}
+
+.daySelected:hover,
+.daySelected:focus {
+  background: var(--color-brand-1);
+  color: var(--color-surface-1);
+}
+
+.dayToday {
+  background: var(--color-surface-2);
+  color: var(--color-text-1);
+}
+
+.dayOutside {
+  color: var(--color-text-2);
+}
+
+.dayOutside[aria-selected] {
+  background: color-mix(in srgb, var(--color-surface-2) 50%, transparent);
+  color: var(--color-text-2);
+}
+
+.dayDisabled {
+  color: var(--color-text-2);
+  opacity: 0.5;
+}
+
+.dayRangeMiddle[aria-selected] {
+  background: var(--color-surface-2);
+  color: var(--color-text-1);
+}
+
+.dayHidden {
+  visibility: hidden;
+}
