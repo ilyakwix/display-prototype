@@ -14,6 +14,21 @@ interface ColorGroup {
   colors: ColorOption[];
 }
 
+const colorUsageGuidance = [
+  "App background",
+  "Subtle background",
+  "UI element background",
+  "Hovered UI element background",
+  "Active / Selected UI element background",
+  "Subtle borders and separators",
+  "UI element border and focus rings",
+  "Hovered UI element border",
+  "Solid backgrounds",
+  "Hovered solid backgrounds",
+  "Low-contrast text",
+  "High-contrast text",
+];
+
 const colorGroups: ColorGroup[] = [
   {
     name: "Neutral",
@@ -44,6 +59,15 @@ const colorGroups: ColorGroup[] = [
 export default function Home() {
   const [hoveredColor, setHoveredColor] = useState<string>("Select a color");
 
+  const handleMouseEnter = (colorIndex: number) => {
+    const usageGuidance = colorUsageGuidance[colorIndex - 1];
+    setHoveredColor(usageGuidance);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredColor("Select a color");
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Radix Colors Dropdown Menu</h1>
@@ -60,15 +84,15 @@ export default function Home() {
           {colorGroups.map((group, groupIndex) => (
             <React.Fragment key={group.name}>
               <DropdownMenu.Group className={styles.colorGroup}>
-                {group.colors.map((color) => (
+                {group.colors.map((color, colorIndex) => (
                   <DropdownMenu.Item
                     key={color.label}
                     className={styles.colorItem}
                     onSelect={() => {
                       console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
                     }}
-                    onMouseEnter={() => setHoveredColor(color.badgeName)}
-                    onMouseLeave={() => setHoveredColor("Select a color")}
+                    onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
+                    onMouseLeave={handleMouseLeave}
                   >
                     <div className={styles.colorInfo}>
                       <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
