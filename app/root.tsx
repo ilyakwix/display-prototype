@@ -1,7 +1,6 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 
 import type { Route } from "./+types/root";
-import { Toaster } from "./components/ui/toaster/toaster";
 import colorSchemeApi from "@dazl/color-scheme/client?url";
 import { Theme } from "@radix-ui/themes";
 
@@ -45,7 +44,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Theme appearance="light" accentColor="iris" grayColor="sand" radius="medium" scaling="100%">
           {children}
         </Theme>
-        <Toaster />
         <ScrollRestoration />
         <Scripts />
       </body>

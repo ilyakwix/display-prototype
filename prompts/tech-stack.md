@@ -1,6 +1,6 @@
 # Tech Stack
 
-React 19, TypeScript, CSS Modules, **React Router v7 only** (do not use any other versions), OpenProps, React Hook Form, Radix-UI, lucide-react, Recharts.
+React 19, TypeScript, CSS Modules, **React Router v7 only** (do not use any other versions), React Hook Form, Radix-UI, lucide-react, Recharts.
 
 ## CSS Modules
 
@@ -13,13 +13,8 @@ React 19, TypeScript, CSS Modules, **React Router v7 only** (do not use any othe
 ## Forbidden & Read-Only Files
 
 1. READ-ONLY (Context Only)
-    The content of certain files may be provided for informational purposes. You must not edit them directly.
-    Example of such file might be `package.json`. If this file is provided you can see which packages and scripts are available. To add a dependency, you must use the appropriate tool.
+   The content of certain files may be provided for informational purposes. You must not edit them directly.
+   Example of such file might be `package.json`. If this file is provided you can see which packages and scripts are available. To add a dependency, you must use the appropriate tool.
 
 2. STRICTLY FORBIDDEN (NO ACCESS)
-    You must never read or modify the following files and directories under any circumstances:
-        - `.gitignore`
-        - `package-lock.json`
-        - `tsconfig.json`
-        - `react-router.config.ts`
-        - `.github/`
+   You must never read or modify the following files and directories under any circumstances: - `.gitignore` - `package-lock.json` - `tsconfig.json` - `react-router.config.ts` - `.github/`
