@@ -135,6 +135,9 @@ export default function Home() {
             return (
               <React.Fragment key={group.name}>
                 <DropdownMenu.Group className={`${styles.colorGroup} ${isSwatchView ? styles.swatchViewGroup : ""}`}>
+                  {isSwatchView && (
+                    <DropdownMenu.Label className={styles.swatchViewGroupLabel}>{group.name}</DropdownMenu.Label>
+                  )}
                   {filteredColors.map((color) => {
                     const colorIndex = group.colors.indexOf(color);
 
@@ -164,7 +167,9 @@ export default function Home() {
                     );
                   })}
                 </DropdownMenu.Group>
-                {groupIndex < colorGroups.length - 1 && filteredColors.length > 0 && <DropdownMenu.Separator />}
+                {!isSwatchView && groupIndex < colorGroups.length - 1 && filteredColors.length > 0 && (
+                  <DropdownMenu.Separator />
+                )}
               </React.Fragment>
             );
           })}
