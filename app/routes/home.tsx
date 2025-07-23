@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import styles from "./home.module.css";
-import { DropdownMenu, Switch, Text, Flex, TextField } from "@radix-ui/themes";
+import { DropdownMenu, Switch, Text, Flex } from "@radix-ui/themes";
 
 interface ColorOption {
   label: string;
@@ -59,7 +59,6 @@ const colorGroups: ColorGroup[] = [
 export default function Home() {
   const [hoveredColorInfo, setHoveredColorInfo] = useState<string | null>(null);
   const [showAllColors, setShowAllColors] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleMouseEnter = (colorIndex: number) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
@@ -76,46 +75,11 @@ export default function Home() {
     return colorIndex === 0 || colorIndex === 1 || colorIndex >= 9;
   };
 
-  const matchesSearch = (color: ColorOption): boolean => {
-    if (!searchQuery.trim()) return true;
-    const query = searchQuery.toLowerCase();
-    return color.label.toLowerCase().includes(query) || color.badgeName.toLowerCase().includes(query);
-  };
-
-  const shouldDisplayColor = (color: ColorOption, colorIndex: number): boolean => {
-    const hasSearchQuery = searchQuery.trim().length > 0;
-
-    // If there's a search query, show all colors that match the search
-    if (hasSearchQuery) {
-      return matchesSearch(color);
-    }
-
-    // If no search query, use the "Show all colors" toggle logic
-    return shouldShowColor(colorIndex);
-  };
-
   const handleDropdownOpenChange = (open: boolean) => {
     if (!open) {
       // Reset to condensed view when dropdown closes
       setShowAllColors(false);
       setHoveredColorInfo(null);
-      setSearchQuery("");
-    }
-  };
-
-  const handlePointerDownOutside = (event: Event) => {
-    const target = event.target as Element;
-    // Check if the clicked element is within the search container
-    if (target.closest(`.${styles.searchContainer}`)) {
-      event.preventDefault();
-    }
-  };
-
-  const handleFocusOutside = (event: Event) => {
-    const target = event.target as Element;
-    // Check if the focused element is within the search container
-    if (target.closest(`.${styles.searchContainer}`)) {
-      event.preventDefault();
     }
   };
 
@@ -131,34 +95,9 @@ export default function Home() {
           </button>
         </DropdownMenu.Trigger>
 
-        <DropdownMenu.Content
-          className={styles.dropdownContent}
-          onPointerDownOutside={handlePointerDownOutside}
-          onFocusOutside={handleFocusOutside}
-        >
-          <div className={styles.searchContainer}>
-            <TextField.Root>
-              <TextField.Slot>
-                <input
-                  type="text"
-                  placeholder="Search colors..."
-                  value={searchQuery}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
-                  style={{
-                    border: "none",
-                    outline: "none",
-                    background: "transparent",
-                    width: "100%",
-                    fontSize: "var(--font-size-1)",
-                    color: "var(--color-base-text)",
-                  }}
-                />
-              </TextField.Slot>
-            </TextField.Root>
-          </div>
-
+        <DropdownMenu.Content className={styles.dropdownContent}>
           {colorGroups.map((group, groupIndex) => {
-            const filteredColors = group.colors.filter((color, colorIndex) => shouldDisplayColor(color, colorIndex));
+            const filteredColors = group.colors.filter((color, colorIndex) => shouldShowColor(colorIndex));
 
             if (filteredColors.length === 0) return null;
 
