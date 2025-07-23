@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import styles from "./home.module.css";
-import { DropdownMenu, Switch, Text, Flex } from "@radix-ui/themes";
+import { DropdownMenu, Switch, Text, Flex, TextField } from "@radix-ui/themes";
 
 interface ColorOption {
   label: string;
@@ -59,6 +59,7 @@ const colorGroups: ColorGroup[] = [
 export default function Home() {
   const [hoveredColorInfo, setHoveredColorInfo] = useState<string | null>(null);
   const [showAllColors, setShowAllColors] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleMouseEnter = (colorIndex: number) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
@@ -75,11 +76,18 @@ export default function Home() {
     return colorIndex === 0 || colorIndex === 1 || colorIndex >= 9;
   };
 
+  const matchesSearch = (color: ColorOption): boolean => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase();
+    return color.label.toLowerCase().includes(query) || color.badgeName.toLowerCase().includes(query);
+  };
+
   const handleDropdownOpenChange = (open: boolean) => {
     if (!open) {
       // Reset to condensed view when dropdown closes
       setShowAllColors(false);
       setHoveredColorInfo(null);
+      setSearchQuery("");
     }
   };
 
@@ -96,34 +104,63 @@ export default function Home() {
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Content className={styles.dropdownContent}>
-          {colorGroups.map((group, groupIndex) => (
-            <React.Fragment key={group.name}>
-              <DropdownMenu.Group className={styles.colorGroup}>
-                {group.colors.map((color, colorIndex) => {
-                  if (!shouldShowColor(colorIndex)) return null;
+          <div className={styles.searchContainer}>
+            <TextField.Root>
+              <TextField.Slot>
+                <input
+                  type="text"
+                  placeholder="Search colors..."
+                  value={searchQuery}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
+                  style={{
+                    border: "none",
+                    outline: "none",
+                    background: "transparent",
+                    width: "100%",
+                    fontSize: "var(--font-size-1)",
+                    color: "var(--color-base-text)",
+                  }}
+                />
+              </TextField.Slot>
+            </TextField.Root>
+          </div>
 
-                  return (
-                    <DropdownMenu.Item
-                      key={color.label}
-                      className={styles.colorItem}
-                      onSelect={() => {
-                        console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
-                      }}
-                      onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      <div className={styles.colorInfo}>
-                        <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
-                        <span className={styles.colorLabel}>{color.label}</span>
-                      </div>
-                      <span className={styles.colorBadge}>{color.badgeName}</span>
-                    </DropdownMenu.Item>
-                  );
-                })}
-              </DropdownMenu.Group>
-              {groupIndex < colorGroups.length - 1 && <DropdownMenu.Separator />}
-            </React.Fragment>
-          ))}
+          {colorGroups.map((group, groupIndex) => {
+            const filteredColors = group.colors.filter(
+              (color, colorIndex) => shouldShowColor(colorIndex) && matchesSearch(color),
+            );
+
+            if (filteredColors.length === 0) return null;
+
+            return (
+              <React.Fragment key={group.name}>
+                <DropdownMenu.Group className={styles.colorGroup}>
+                  {filteredColors.map((color, originalIndex) => {
+                    const colorIndex = group.colors.indexOf(color);
+
+                    return (
+                      <DropdownMenu.Item
+                        key={color.label}
+                        className={styles.colorItem}
+                        onSelect={() => {
+                          console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
+                        }}
+                        onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        <div className={styles.colorInfo}>
+                          <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
+                          <span className={styles.colorLabel}>{color.label}</span>
+                        </div>
+                        <span className={styles.colorBadge}>{color.badgeName}</span>
+                      </DropdownMenu.Item>
+                    );
+                  })}
+                </DropdownMenu.Group>
+                {groupIndex < colorGroups.length - 1 && filteredColors.length > 0 && <DropdownMenu.Separator />}
+              </React.Fragment>
+            );
+          })}
 
           <div className={styles.stickyFooter}>
             {hoveredColorInfo ? (
