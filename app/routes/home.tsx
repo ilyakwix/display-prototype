@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import styles from "./home.module.css";
 import { DropdownMenu } from "@radix-ui/themes";
@@ -42,6 +42,8 @@ const colorGroups: ColorGroup[] = [
 ];
 
 export default function Home() {
+  const [hoveredColor, setHoveredColor] = useState<string>("Select a color");
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Radix Colors Dropdown Menu</h1>
@@ -65,6 +67,8 @@ export default function Home() {
                     onSelect={() => {
                       console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
                     }}
+                    onMouseEnter={() => setHoveredColor(color.badgeName)}
+                    onMouseLeave={() => setHoveredColor("Select a color")}
                   >
                     <div className={styles.colorInfo}>
                       <div className={styles.colorSwatch} style={{ backgroundColor: color.value }} />
@@ -77,7 +81,7 @@ export default function Home() {
               {groupIndex < colorGroups.length - 1 && <DropdownMenu.Separator />}
             </React.Fragment>
           ))}
-          <div className={styles.stickyFooter}>Hello world</div>
+          <div className={styles.stickyFooter}>{hoveredColor}</div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </div>
