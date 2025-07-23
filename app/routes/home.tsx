@@ -150,11 +150,7 @@ export default function Home() {
                         aria-label={`${color.label} - ${color.badgeName}`}
                       >
                         {isSwatchView ? (
-                          <>
-                            <div className={styles.swatchViewColorSwatch} style={{ backgroundColor: color.value }} />
-                            <Text className={styles.swatchViewColorName}>{color.label}</Text>
-                            <Text className={styles.swatchViewColorBadge}>{color.badgeName}</Text>
-                          </>
+                          <div className={styles.swatchViewColorSwatch} style={{ backgroundColor: color.value }} />
                         ) : (
                           <>
                             <div className={styles.colorInfo}>
