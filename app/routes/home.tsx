@@ -55,7 +55,6 @@ export default function Home() {
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Content className={styles.dropdownContent}>
-          <div className={styles.stickyHeader}>Hello world</div>
           {colorGroups.map((group, groupIndex) => (
             <React.Fragment key={group.name}>
               <DropdownMenu.Group className={styles.colorGroup}>
@@ -78,6 +77,7 @@ export default function Home() {
               {groupIndex < colorGroups.length - 1 && <DropdownMenu.Separator />}
             </React.Fragment>
           ))}
+          <div className={styles.stickyFooter}>Hello world</div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </div>
