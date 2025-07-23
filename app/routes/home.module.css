@@ -66,6 +66,19 @@
   border-bottom-right-radius: var(--radius-4);
   border-bottom-left-radius: var(--radius-4);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5);
+}
+
+.hoveredColorName {
+  font-weight: var(--font-weight-6);
+  color: var(--color-accent-text);
+  margin-bottom: var(--space-0-25);
+}
+
+.hoveredColorDescription {
+  color: var(--color-base-text-muted);
 }
 
 .colorGroup {

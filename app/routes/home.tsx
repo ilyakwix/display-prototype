@@ -15,6 +15,11 @@ interface ColorGroup {
   colors: ColorOption[];
 }
 
+interface HoveredColorInfo {
+  badgeName: string;
+  description: string;
+}
+
 const colorUsageGuidance = [
   "App background",
   "Subtle background",
@@ -58,13 +63,16 @@ const colorGroups: ColorGroup[] = [
 ];
 
 export default function Home() {
-  const [hoveredColorInfo, setHoveredColorInfo] = useState<string | null>(null);
+  const [hoveredColorInfo, setHoveredColorInfo] = useState<HoveredColorInfo | null>(null);
   const [showAllColors, setShowAllColors] = useState<boolean>(false);
   const [isSwatchView, setIsSwatchView] = useState<boolean>(false);
 
-  const handleMouseEnter = (colorIndex: number) => {
+  const handleMouseEnter = (colorIndex: number, color: ColorOption) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
-    setHoveredColorInfo(usageGuidance);
+    setHoveredColorInfo({
+      badgeName: color.badgeName,
+      description: usageGuidance,
+    });
   };
 
   const handleMouseLeave = () => {
@@ -137,7 +145,7 @@ export default function Home() {
                         onSelect={() => {
                           console.log(`Selected: ${color.label} - ${color.value} (${color.badgeName})`);
                         }}
-                        onMouseEnter={() => handleMouseEnter(colorIndex + 1)}
+                        onMouseEnter={() => handleMouseEnter(colorIndex + 1, color)}
                         onMouseLeave={handleMouseLeave}
                         aria-label={`${color.label} - ${color.badgeName}`}
                       >
@@ -166,7 +174,14 @@ export default function Home() {
           })}
 
           <div className={styles.stickyFooter}>
-            <Text size="1">{hoveredColorInfo || "Select a color"}</Text>
+            {isSwatchView && hoveredColorInfo && (
+              <Text size="1" className={styles.hoveredColorName}>
+                {hoveredColorInfo.badgeName}
+              </Text>
+            )}
+            <Text size="1" className={styles.hoveredColorDescription}>
+              {hoveredColorInfo?.description || "Select a color"}
+            </Text>
           </div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
