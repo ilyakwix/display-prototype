@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import styles from "./home.module.css";
-import { DropdownMenu } from "@radix-ui/themes";
+import { DropdownMenu, Switch, Text, Flex } from "@radix-ui/themes";
 
 interface ColorOption {
   label: string;
@@ -57,16 +57,16 @@ const colorGroups: ColorGroup[] = [
 ];
 
 export default function Home() {
-  const [hoveredColor, setHoveredColor] = useState<string>("Select a color");
+  const [hoveredColorInfo, setHoveredColorInfo] = useState<string | null>(null);
   const [showAllColors, setShowAllColors] = useState<boolean>(false);
 
   const handleMouseEnter = (colorIndex: number) => {
     const usageGuidance = colorUsageGuidance[colorIndex - 1];
-    setHoveredColor(usageGuidance);
+    setHoveredColorInfo(usageGuidance);
   };
 
   const handleMouseLeave = () => {
-    setHoveredColor("Select a color");
+    setHoveredColorInfo(null);
   };
 
   const shouldShowColor = (colorIndex: number): boolean => {
@@ -75,15 +75,11 @@ export default function Home() {
     return colorIndex === 0 || colorIndex === 1 || colorIndex >= 9;
   };
 
-  const handleShowAll = () => {
-    setShowAllColors(true);
-  };
-
   const handleDropdownOpenChange = (open: boolean) => {
     if (!open) {
       // Reset to condensed view when dropdown closes
       setShowAllColors(false);
-      setHoveredColor("Select a color");
+      setHoveredColorInfo(null);
     }
   };
 
@@ -129,17 +125,20 @@ export default function Home() {
             </React.Fragment>
           ))}
 
-          {!showAllColors && (
-            <DropdownMenu.Item
-              className={styles.showAllButton}
-              onSelect={handleShowAll}
-              aria-label="Show all color shades"
-            >
-              Show all
-            </DropdownMenu.Item>
-          )}
-
-          <div className={styles.stickyFooter}>{hoveredColor}</div>
+          <div className={styles.stickyFooter}>
+            {hoveredColorInfo ? (
+              <Text size="2" weight="medium">
+                {hoveredColorInfo}
+              </Text>
+            ) : (
+              <Flex align="center" gap="2" className={styles.switchContainer}>
+                <label htmlFor="show-all-colors" className={styles.switchLabel}>
+                  Show all colors
+                </label>
+                <Switch id="show-all-colors" checked={showAllColors} onCheckedChange={setShowAllColors} size="1" />
+              </Flex>
+            )}
+          </div>
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </div>
