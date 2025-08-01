@@ -16,9 +16,9 @@
   align-items: center;
   gap: var(--space-1);
   padding: var(--space-2) var(--space-3);
-  background-color: var(--color-accent-bg);
+  background-color: var(--gray-3);
   color: var(--color-accent-text);
-  border: 1px solid var(--color-accent-border);
+  border: 1px solid var(--gray-6);
   border-radius: var(--radius-2);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-5);
@@ -27,8 +27,7 @@
 }
 
 .dropdownTrigger:hover {
-  background-color: var(--color-accent-bg-hover);
-  border-color: var(--color-accent-border-hover);
+  background-color: var(--gray-4);
 }
 
 .dropdownContent {
@@ -134,7 +133,9 @@
 
 .swatchViewColorItem {
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
   display: flex;
   flex-direction: column;
   align-items: center;

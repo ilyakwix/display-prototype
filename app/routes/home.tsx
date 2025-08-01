@@ -95,7 +95,8 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Radix Colors Dropdown Menu</h1>
+      <h1 className={styles.title}>Layout Controller</h1>
+      <div>Container</div>
 
       <DropdownMenu.Root onOpenChange={handleDropdownOpenChange}>
         <DropdownMenu.Trigger>
