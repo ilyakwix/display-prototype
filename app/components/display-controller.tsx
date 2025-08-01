@@ -39,7 +39,7 @@ export default function DisplayController({ onDisplayChange, defaultValue = "fle
         className={styles.segmentedControl}
         value={selectedValue}
         onValueChange={handleValueChange}
-        size=""1""
+        size="1"
       >
         {DISPLAY_OPTIONS.map((option) => (
           <SegmentedControl.Item key={option.value} value={option.value}>
