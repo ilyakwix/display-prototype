@@ -3,7 +3,6 @@ import { ChevronDown, Grid3X3Icon, Rows3Icon, SwatchBookIcon, TypeIcon } from "l
 import styles from "./home.module.css";
 import classNames from "classnames";
 import { DropdownMenu, IconButton, Text, Flex, Tooltip } from "@radix-ui/themes";
-import DisplayController from "../components/display-controller";
 
 interface ColorOption {
   label: string;
@@ -94,15 +93,9 @@ export default function Home() {
     }
   };
 
-  const handleDisplayChange = (displayValue: string) => {
-    console.log(`Display property changed to: ${displayValue}`);
-  };
-
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Layout Controller</h1>
-
-      <DisplayController onDisplayChange={handleDisplayChange} />
 
       <DropdownMenu.Root onOpenChange={handleDropdownOpenChange}>
         <DropdownMenu.Trigger>
