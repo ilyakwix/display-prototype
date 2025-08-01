@@ -18,7 +18,7 @@
     "semantic": {
       "app/styles/theme.css": {
         "font": { "pattern": "--font-{word-list}", "tokenName": "{token}" },
-        "color": "--color-{word}-{word-list}"
+        "color": ["--color-{word}-{word-list}", "--{word-list}-{alphanum}"]
       }
     }
   }
