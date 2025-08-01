@@ -10,6 +10,21 @@
   color: var(--color-base-text-strong);
 }
 
+.controls {
+  display: flex;
+  gap: var(--space-1);
+  align-items: center;
+}
+
 .segmentedControl {
-  width: 100%;
+  flex: 1;
+}
+
+.moreButton {
+  flex-shrink: 0;
+}
+
+.currentValue {
+  color: var(--color-base-text-subtle);
+  font-size: var(--font-size-1);
 }
