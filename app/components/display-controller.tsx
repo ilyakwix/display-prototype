@@ -20,7 +20,6 @@ const DISPLAY_OPTIONS = [
   { label: "Flex", value: "flex" },
   { label: "Grid", value: "grid" },
   { label: "Block", value: "block" },
-  { label: "Inline Block", value: "inline-block" },
   { label: "None", value: "none" },
 ];
 
