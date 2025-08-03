@@ -86,7 +86,7 @@ const JUSTIFY_CONTENT_OPTIONS = [
   { label: "Space Evenly", value: "space-evenly" },
 ];
 
-export default function FlexboxSettings({
+function FlexboxSettings({
   direction,
   alignItems,
   justifyContent,
@@ -184,3 +184,5 @@ export default function FlexboxSettings({
     </div>
   );
 }
+
+export default FlexboxSettings;
