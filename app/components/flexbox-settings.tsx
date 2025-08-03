@@ -20,9 +20,9 @@ import {
   AlignHorizontalJustifyEndIcon,
   AlignHorizontalSpaceBetweenIcon,
   AlignHorizontalSpaceAroundIcon,
-  SeparatorHorizontalIcon,
 } from "lucide-react";
 import { ColumnGapIcon } from "./column-gap-icon";
+import { RowGapIcon } from "./row-gap-icon";
 
 interface FlexboxSettingsProps {
   /**
@@ -264,7 +264,7 @@ export const FlexboxSettings = ({
               className={styles.numberInput}
             >
               <TextField.Slot>
-                <SeparatorHorizontalIcon size={16} strokeWidth={1.5} />
+                <RowGapIcon size={16} />
               </TextField.Slot>
             </TextField.Root>
           </div>
