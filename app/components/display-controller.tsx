@@ -17,12 +17,13 @@ interface DisplayControllerProps {
   onValueChange: (value: string) => void;
 }
 
-const SEGMENTED_OPTIONS = [
+const PRIMARY_OPTIONS = [
   { label: "Flex", value: "flex" },
   { label: "Grid", value: "grid" },
   { label: "Block", value: "block" },
-  { label: "None", value: "none" },
 ];
+
+const DEFAULT_FOURTH_OPTION = { label: "None", value: "none" };
 
 const DROPDOWN_OPTIONS = [
   { label: "Inline", value: "inline" },
@@ -31,9 +32,27 @@ const DROPDOWN_OPTIONS = [
   { label: "Inline Grid", value: "inline-grid" },
 ];
 
+// Map display values to their display labels
+const VALUE_TO_LABEL_MAP: Record<string, string> = {
+  flex: "Flex",
+  grid: "Grid",
+  block: "Block",
+  none: "None",
+  inline: "Inline",
+  "inline-block": "Inline Block",
+  "inline-flex": "Inline Flex",
+  "inline-grid": "Inline Grid",
+};
+
 export default function DisplayController({ value, onValueChange }: DisplayControllerProps) {
-  // Determine if the current value should be shown in the segmented control
-  const segmentedValue = SEGMENTED_OPTIONS.some((option) => option.value === value) ? value : undefined;
+  // Determine the fourth option based on the current value
+  const isPrimaryValue = PRIMARY_OPTIONS.some((option) => option.value === value);
+  const isNoneValue = value === "none";
+
+  const fourthOption =
+    isPrimaryValue || isNoneValue ? DEFAULT_FOURTH_OPTION : { label: VALUE_TO_LABEL_MAP[value] || value, value };
+
+  const segmentedOptions = [...PRIMARY_OPTIONS, fourthOption];
 
   const handleSegmentedChange = (newValue: string) => {
     onValueChange(newValue);
@@ -50,11 +69,11 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
       <div className={styles.controls}>
         <SegmentedControl.Root
           className={styles.segmentedControl}
-          value={segmentedValue}
+          value={value}
           onValueChange={handleSegmentedChange}
           size="1"
         >
-          {SEGMENTED_OPTIONS.map((option) => (
+          {segmentedOptions.map((option) => (
             <SegmentedControl.Item key={option.value} value={option.value}>
               {option.label}
             </SegmentedControl.Item>
