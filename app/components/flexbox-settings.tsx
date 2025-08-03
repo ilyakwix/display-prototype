@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SegmentedControl } from "@radix-ui/themes";
+import { SegmentedControl, TextField } from "@radix-ui/themes";
 import styles from "./flexbox-settings.module.css";
 import {
   ArrowDownIcon,
@@ -249,11 +249,11 @@ export const FlexboxSettings = ({
       </div>
 
       <div className={styles.setting}>
-        <label className={styles.label}>Gaps</label>
         <div className={styles.gapInputs}>
           <div className={styles.gapInput}>
-            <label className={styles.gapLabel}>Row</label>
-            <input
+            <label className={styles.label}>Row Gap</label>
+            <TextField.Root
+              size="1"
               type="number"
               placeholder="0"
               value={rowGap}
@@ -263,8 +263,9 @@ export const FlexboxSettings = ({
             />
           </div>
           <div className={styles.gapInput}>
-            <label className={styles.gapLabel}>Column</label>
-            <input
+            <label className={styles.label}>Column Gap</label>
+            <TextField.Root
+              size="1"
               type="number"
               placeholder="0"
               value={columnGap}
