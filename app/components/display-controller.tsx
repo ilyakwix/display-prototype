@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { SegmentedControl, DropdownMenu, Button, Text } from "@radix-ui/themes";
 import { ChevronDown } from "lucide-react";
 import styles from "./display-controller.module.css";
@@ -46,19 +46,36 @@ const VALUE_TO_LABEL_MAP: Record<string, string> = {
 };
 
 export default function DisplayController({ value, onValueChange }: DisplayControllerProps) {
-  // Determine the fourth option based on the current value
-  const isPrimaryValue = PRIMARY_OPTIONS.some((option) => option.value === value);
-  const isNoneValue = value === "none";
+  // Track the sticky fourth option - only changes when selecting from dropdown
+  const [stickyFourthOption, setStickyFourthOption] = useState(() => {
+    // Initialize based on current value
+    const isPrimaryValue = PRIMARY_OPTIONS.some((option) => option.value === value);
+    const isNoneValue = value === "none";
 
-  const fourthOption =
-    isPrimaryValue || isNoneValue ? DEFAULT_FOURTH_OPTION : { label: VALUE_TO_LABEL_MAP[value] || value, value };
+    if (isPrimaryValue || isNoneValue) {
+      return DEFAULT_FOURTH_OPTION;
+    } else {
+      return { label: VALUE_TO_LABEL_MAP[value] || value, value };
+    }
+  });
 
-  const segmentedOptions = [...PRIMARY_OPTIONS, fourthOption];
+  // Update sticky fourth option only when value changes from dropdown selection
+  useEffect(() => {
+    const isPrimaryValue = PRIMARY_OPTIONS.some((option) => option.value === value);
+    const isNoneValue = value === "none";
 
-  // Filter dropdown options to exclude the current value shown in segmented control
+    // Only update sticky option if the new value is not a primary option
+    // This means it was selected from the dropdown
+    if (!isPrimaryValue && !isNoneValue) {
+      setStickyFourthOption({ label: VALUE_TO_LABEL_MAP[value] || value, value });
+    }
+  }, [value]);
+
+  const segmentedOptions = [...PRIMARY_OPTIONS, stickyFourthOption];
+
+  // Filter dropdown options to exclude the current sticky fourth option
   const filteredDropdownOptions = DROPDOWN_OPTIONS.filter((option) => {
-    // Exclude the current value if it's displayed in the segmented control
-    return option.value !== fourthOption.value;
+    return option.value !== stickyFourthOption.value;
   });
 
   // Sort dropdown options to ensure "None" appears last if present
