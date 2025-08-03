@@ -45,7 +45,7 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
 
   return (
     <div className={styles.container}>
-      <label className={styles.label}>Display Property</label>
+      <label className={styles.label}>Display</label>
 
       <div className={styles.controls}>
         <SegmentedControl.Root
@@ -63,7 +63,7 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
 
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <Button variant="outline" size="1" className={styles.moreButton}>
+            <Button variant="soft" size="1" color="gray" className={styles.moreButton}>
               <ChevronDown size={14} />
             </Button>
           </DropdownMenu.Trigger>
