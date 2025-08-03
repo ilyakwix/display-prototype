@@ -35,7 +35,7 @@ export default function Home() {
           <Button>Open Display Controls</Button>
         </Popover.Trigger>
         <Popover.Content>
-          <DisplayController value={displayValue} onValueChange={handleDisplayChange} />
+          <DisplayController value={displayValue} onValueChange={(value: string) => handleDisplayChange(value)} />
 
           {isFlexDisplay && (
             <FlexboxSettings
@@ -44,23 +44,23 @@ export default function Home() {
               justifyContent={justifyContent}
               rowGap={rowGap}
               columnGap={columnGap}
-              onDirectionChange={(value) => {
+              onDirectionChange={(value: string) => {
                 setFlexDirection(value);
                 handleFlexSettingsChange("direction", value);
               }}
-              onAlignItemsChange={(value) => {
+              onAlignItemsChange={(value: string) => {
                 setAlignItems(value);
                 handleFlexSettingsChange("alignItems", value);
               }}
-              onJustifyContentChange={(value) => {
+              onJustifyContentChange={(value: string) => {
                 setJustifyContent(value);
                 handleFlexSettingsChange("justifyContent", value);
               }}
-              onRowGapChange={(value) => {
+              onRowGapChange={(value: number) => {
                 setRowGap(value);
                 handleFlexSettingsChange("rowGap", value);
               }}
-              onColumnGapChange={(value) => {
+              onColumnGapChange={(value: number) => {
                 setColumnGap(value);
                 handleFlexSettingsChange("columnGap", value);
               }}

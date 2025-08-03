@@ -1,5 +1,5 @@
 import React from "react";
-import { SegmentedControl, TextField, Flex, Box } from "@radix-ui/themes";
+import { SegmentedControl } from "@radix-ui/themes";
 import styles from "./flexbox-settings.module.css";
 
 interface FlexboxSettingsProps {
@@ -163,24 +163,30 @@ export const FlexboxSettings = ({
         <div className={styles.gapInputs}>
           <div className={styles.gapInput}>
             <label className={styles.gapLabel}>Row</label>
-            <TextField.Root>
-              <TextField.Input type="number" placeholder="0" value={rowGap} onChange={handleRowGapChange} min="0" />
-            </TextField.Root>
+            <input
+              type="number"
+              placeholder="0"
+              value={rowGap}
+              onChange={handleRowGapChange}
+              min="0"
+              className={styles.numberInput}
+            />
           </div>
           <div className={styles.gapInput}>
             <label className={styles.gapLabel}>Column</label>
-            <TextField.Root>
-              <TextField.Input
-                type="number"
-                placeholder="0"
-                value={columnGap}
-                onChange={handleColumnGapChange}
-                min="0"
-              />
-            </TextField.Root>
+            <input
+              type="number"
+              placeholder="0"
+              value={columnGap}
+              onChange={handleColumnGapChange}
+              min="0"
+              className={styles.numberInput}
+            />
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default FlexboxSettings;
