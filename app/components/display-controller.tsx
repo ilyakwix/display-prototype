@@ -30,6 +30,7 @@ const DROPDOWN_OPTIONS = [
   { label: "Inline Block", value: "inline-block" },
   { label: "Inline Flex", value: "inline-flex" },
   { label: "Inline Grid", value: "inline-grid" },
+  { label: "None", value: "none" },
 ];
 
 // Map display values to their display labels
@@ -53,6 +54,19 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
     isPrimaryValue || isNoneValue ? DEFAULT_FOURTH_OPTION : { label: VALUE_TO_LABEL_MAP[value] || value, value };
 
   const segmentedOptions = [...PRIMARY_OPTIONS, fourthOption];
+
+  // Filter dropdown options to exclude the current value shown in segmented control
+  const filteredDropdownOptions = DROPDOWN_OPTIONS.filter((option) => {
+    // Exclude the current value if it's displayed in the segmented control
+    return option.value !== fourthOption.value;
+  });
+
+  // Sort dropdown options to ensure "None" appears last if present
+  const sortedDropdownOptions = filteredDropdownOptions.sort((a, b) => {
+    if (a.value === "none") return 1;
+    if (b.value === "none") return -1;
+    return 0;
+  });
 
   const handleSegmentedChange = (newValue: string) => {
     onValueChange(newValue);
@@ -87,7 +101,7 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
             </Button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            {DROPDOWN_OPTIONS.map((option) => (
+            {sortedDropdownOptions.map((option) => (
               <DropdownMenu.Item key={option.value} onSelect={() => handleDropdownSelect(option.value)}>
                 {option.label}
               </DropdownMenu.Item>
