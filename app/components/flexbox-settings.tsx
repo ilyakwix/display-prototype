@@ -15,6 +15,11 @@ import {
   AlignEndHorizontalIcon,
   StretchVerticalIcon,
   BaselineIcon,
+  AlignHorizontalJustifyStartIcon,
+  AlignHorizontalJustifyCenterIcon,
+  AlignHorizontalJustifyEndIcon,
+  AlignHorizontalSpaceBetweenIcon,
+  AlignHorizontalSpaceAroundIcon,
 } from "lucide-react";
 
 interface FlexboxSettingsProps {
@@ -118,13 +123,32 @@ const ALIGN_ITEMS_OPTIONS: { label: React.ReactNode; value: string; ariaLabel: s
   },
 ];
 
-const JUSTIFY_CONTENT_OPTIONS = [
-  { label: "Start", value: "flex-start" },
-  { label: "Center", value: "center" },
-  { label: "End", value: "flex-end" },
-  { label: "Space Between", value: "space-between" },
-  { label: "Space Around", value: "space-around" },
-  { label: "Space Evenly", value: "space-evenly" },
+const JUSTIFY_CONTENT_OPTIONS: { label: React.ReactNode; value: string; ariaLabel: string }[] = [
+  {
+    label: <AlignHorizontalJustifyStartIcon size={16} strokeWidth={1.5} />,
+    value: "flex-start",
+    ariaLabel: "Justify content: Start",
+  },
+  {
+    label: <AlignHorizontalJustifyCenterIcon size={16} strokeWidth={1.5} />,
+    value: "center",
+    ariaLabel: "Justify content: Center",
+  },
+  {
+    label: <AlignHorizontalJustifyEndIcon size={16} strokeWidth={1.5} />,
+    value: "flex-end",
+    ariaLabel: "Justify content: End",
+  },
+  {
+    label: <AlignHorizontalSpaceBetweenIcon size={16} strokeWidth={1.5} />,
+    value: "space-between",
+    ariaLabel: "Justify content: Space Between",
+  },
+  {
+    label: <AlignHorizontalSpaceAroundIcon size={16} strokeWidth={1.5} />,
+    value: "space-around",
+    ariaLabel: "Justify content: Space Around",
+  },
 ];
 
 export const FlexboxSettings = ({
@@ -217,7 +241,7 @@ export const FlexboxSettings = ({
           size="1"
         >
           {JUSTIFY_CONTENT_OPTIONS.map((option) => (
-            <SegmentedControl.Item key={option.value} value={option.value}>
+            <SegmentedControl.Item key={option.value} value={option.value} aria-label={option.ariaLabel}>
               {option.label}
             </SegmentedControl.Item>
           ))}
