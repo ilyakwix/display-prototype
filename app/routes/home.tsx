@@ -29,6 +29,9 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Layout Controller</h1>
+      <p>
+        <p></p>
+      </p>
 
       <Popover.Root>
         <Popover.Trigger>
@@ -68,8 +71,6 @@ export default function Home() {
           )}
         </Popover.Content>
       </Popover.Root>
-
-      <div>Container</div>
     </div>
   );
 }

@@ -264,7 +264,7 @@ export const FlexboxSettings = ({
               className={styles.numberInput}
             >
               <TextField.Slot>
-                <RowGapIcon size={16} />
+                <RowGapIcon size={16} strokeWidth={1.5} />
               </TextField.Slot>
             </TextField.Root>
           </div>
@@ -280,7 +280,7 @@ export const FlexboxSettings = ({
               className={styles.numberInput}
             >
               <TextField.Slot>
-                <ColumnGapIcon size={16} />
+                <ColumnGapIcon size={16} strokeWidth={1.5} />
               </TextField.Slot>
             </TextField.Root>
           </div>
