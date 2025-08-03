@@ -71,11 +71,23 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
     }
   }, [value]);
 
-  const segmentedOptions = [...PRIMARY_OPTIONS, stickyFourthOption];
+  // Calculate segmented control options - prioritize current value if it's non-primary
+  const isPrimaryValue = PRIMARY_OPTIONS.some((option) => option.value === value);
+  let fourthOption;
 
-  // Filter dropdown options to exclude the current sticky fourth option
+  if (!isPrimaryValue) {
+    // If current value is not a primary option, it should be the 4th option
+    fourthOption = { label: VALUE_TO_LABEL_MAP[value] || value, value };
+  } else {
+    // Otherwise use the sticky fourth option
+    fourthOption = stickyFourthOption;
+  }
+
+  const segmentedOptions = [...PRIMARY_OPTIONS, fourthOption];
+
+  // Filter dropdown options to exclude the current fourth option
   const filteredDropdownOptions = DROPDOWN_OPTIONS.filter((option) => {
-    return option.value !== stickyFourthOption.value;
+    return option.value !== fourthOption.value;
   });
 
   // Sort dropdown options to ensure "None" appears last if present
