@@ -10,6 +10,11 @@ import {
   XIcon,
   CornerDownLeftIcon,
   CornerUpRightIcon,
+  AlignStartHorizontalIcon,
+  AlignCenterHorizontalIcon,
+  AlignEndHorizontalIcon,
+  StretchVerticalIcon,
+  BaselineIcon,
 } from "lucide-react";
 
 interface FlexboxSettingsProps {
@@ -85,12 +90,32 @@ const WRAP_OPTIONS: { label: React.ReactNode; value: string }[] = [
   { label: <CornerUpRightIcon size={16} strokeWidth={1.5} />, value: "wrap-reverse" },
 ];
 
-const ALIGN_ITEMS_OPTIONS = [
-  { label: "Start", value: "flex-start" },
-  { label: "Center", value: "center" },
-  { label: "End", value: "flex-end" },
-  { label: "Stretch", value: "stretch" },
-  { label: "Baseline", value: "baseline" },
+const ALIGN_ITEMS_OPTIONS: { label: React.ReactNode; value: string; ariaLabel: string }[] = [
+  {
+    label: <AlignStartHorizontalIcon size={16} strokeWidth={1.5} />,
+    value: "flex-start",
+    ariaLabel: "Align items start",
+  },
+  {
+    label: <AlignCenterHorizontalIcon size={16} strokeWidth={1.5} />,
+    value: "center",
+    ariaLabel: "Align items center",
+  },
+  {
+    label: <AlignEndHorizontalIcon size={16} strokeWidth={1.5} />,
+    value: "flex-end",
+    ariaLabel: "Align items end",
+  },
+  {
+    label: <StretchVerticalIcon size={16} strokeWidth={1.5} />,
+    value: "stretch",
+    ariaLabel: "Align items stretch",
+  },
+  {
+    label: <BaselineIcon size={16} strokeWidth={1.5} />,
+    value: "baseline",
+    ariaLabel: "Align items baseline",
+  },
 ];
 
 const JUSTIFY_CONTENT_OPTIONS = [
@@ -176,7 +201,7 @@ export const FlexboxSettings = ({
           size="1"
         >
           {ALIGN_ITEMS_OPTIONS.map((option) => (
-            <SegmentedControl.Item key={option.value} value={option.value}>
+            <SegmentedControl.Item key={option.value} value={option.value} aria-label={option.ariaLabel}>
               {option.label}
             </SegmentedControl.Item>
           ))}
