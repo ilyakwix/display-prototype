@@ -20,7 +20,9 @@ import {
   AlignHorizontalJustifyEndIcon,
   AlignHorizontalSpaceBetweenIcon,
   AlignHorizontalSpaceAroundIcon,
+  SeparatorHorizontalIcon,
 } from "lucide-react";
+import { ColumnGapIcon } from "./column-gap-icon";
 
 interface FlexboxSettingsProps {
   /**
@@ -260,7 +262,11 @@ export const FlexboxSettings = ({
               onChange={handleRowGapChange}
               min="0"
               className={styles.numberInput}
-            />
+            >
+              <TextField.Slot>
+                <SeparatorHorizontalIcon size={16} strokeWidth={1.5} />
+              </TextField.Slot>
+            </TextField.Root>
           </div>
           <div className={styles.gapInput}>
             <label className={styles.label}>Column Gap</label>
@@ -272,7 +278,11 @@ export const FlexboxSettings = ({
               onChange={handleColumnGapChange}
               min="0"
               className={styles.numberInput}
-            />
+            >
+              <TextField.Slot>
+                <ColumnGapIcon size={16} />
+              </TextField.Slot>
+            </TextField.Root>
           </div>
         </div>
       </div>
