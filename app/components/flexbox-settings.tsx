@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { SegmentedControl } from "@radix-ui/themes";
 import styles from "./flexbox-settings.module.css";
-import { ArrowDownIcon, ArrowLeft, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from "lucide-react";
+import {
+  ArrowDownIcon,
+  ArrowLeft,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowUpIcon,
+  XIcon,
+  CornerDownLeftIcon,
+  CornerUpRightIcon,
+} from "lucide-react";
 
 interface FlexboxSettingsProps {
   /**
@@ -70,6 +79,12 @@ const DIRECTION_OPTIONS: { label: React.ReactNode; value: string }[] = [
   { label: <ArrowUpIcon size={16} strokeWidth={1.5} />, value: "column-reverse" },
 ];
 
+const WRAP_OPTIONS: { label: React.ReactNode; value: string }[] = [
+  { label: <XIcon size={16} strokeWidth={1.5} />, value: "nowrap" },
+  { label: <CornerDownLeftIcon size={16} strokeWidth={1.5} />, value: "wrap" },
+  { label: <CornerUpRightIcon size={16} strokeWidth={1.5} />, value: "wrap-reverse" },
+];
+
 const ALIGN_ITEMS_OPTIONS = [
   { label: "Start", value: "flex-start" },
   { label: "Center", value: "center" },
@@ -99,6 +114,8 @@ export const FlexboxSettings = ({
   onRowGapChange,
   onColumnGapChange,
 }: FlexboxSettingsProps) => {
+  const [flexWrap, setFlexWrap] = useState("nowrap");
+
   const handleRowGapChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value) || 0;
     onRowGapChange(value);
@@ -109,22 +126,45 @@ export const FlexboxSettings = ({
     onColumnGapChange(value);
   };
 
+  const handleWrapChange = (value: string) => {
+    setFlexWrap(value);
+    console.log(`Flex wrap changed to: ${value}`);
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.setting}>
-        <label className={styles.label}>Direction</label>
-        <SegmentedControl.Root
-          className={styles.segmentedControl}
-          value={direction}
-          onValueChange={onDirectionChange}
-          size="1"
-        >
-          {DIRECTION_OPTIONS.map((option) => (
-            <SegmentedControl.Item key={option.value} value={option.value}>
-              {option.label}
-            </SegmentedControl.Item>
-          ))}
-        </SegmentedControl.Root>
+      <div className={styles.directionWrapContainer}>
+        <div className={styles.directionWrapSetting}>
+          <label className={styles.label}>Direction</label>
+          <SegmentedControl.Root
+            className={styles.segmentedControl}
+            value={direction}
+            onValueChange={onDirectionChange}
+            size="1"
+          >
+            {DIRECTION_OPTIONS.map((option) => (
+              <SegmentedControl.Item key={option.value} value={option.value}>
+                {option.label}
+              </SegmentedControl.Item>
+            ))}
+          </SegmentedControl.Root>
+        </div>
+
+        <div className={styles.directionWrapSetting}>
+          <label className={styles.label}>Wrap</label>
+          <SegmentedControl.Root
+            className={styles.segmentedControl}
+            value={flexWrap}
+            onValueChange={handleWrapChange}
+            size="1"
+          >
+            {WRAP_OPTIONS.map((option) => (
+              <SegmentedControl.Item key={option.value} value={option.value}>
+                {option.label}
+              </SegmentedControl.Item>
+            ))}
+          </SegmentedControl.Root>
+        </div>
       </div>
 
       <div className={styles.setting}>
