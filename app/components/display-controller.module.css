@@ -28,3 +28,7 @@
   color: var(--color-base-text-subtle);
   font-size: var(--font-size-1);
 }
+
+.displayItem {
+  min-width: 90px;
+}

@@ -88,7 +88,7 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
           size="1"
         >
           {segmentedOptions.map((option) => (
-            <SegmentedControl.Item key={option.value} value={option.value}>
+            <SegmentedControl.Item className={styles.displayItem} key={option.value} value={option.value}>
               {option.label}
             </SegmentedControl.Item>
           ))}
