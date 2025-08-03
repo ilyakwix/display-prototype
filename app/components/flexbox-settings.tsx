@@ -86,7 +86,7 @@ const JUSTIFY_CONTENT_OPTIONS = [
   { label: "Space Evenly", value: "space-evenly" },
 ];
 
-function FlexboxSettings({
+export const FlexboxSettings = ({
   direction,
   alignItems,
   justifyContent,
@@ -97,7 +97,7 @@ function FlexboxSettings({
   onJustifyContentChange,
   onRowGapChange,
   onColumnGapChange,
-}: FlexboxSettingsProps) {
+}: FlexboxSettingsProps) => {
   const handleRowGapChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value) || 0;
     onRowGapChange(value);
@@ -183,6 +183,4 @@ function FlexboxSettings({
       </div>
     </div>
   );
-}
-
-export default FlexboxSettings;
+};
