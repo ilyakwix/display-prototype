@@ -18,9 +18,9 @@ interface DisplayControllerProps {
 }
 
 const PRIMARY_OPTIONS = [
+  { label: "Block", value: "block" },
   { label: "Flex", value: "flex" },
   { label: "Grid", value: "grid" },
-  { label: "Block", value: "block" },
 ];
 
 const DEFAULT_FOURTH_OPTION = { label: "None", value: "none" };
