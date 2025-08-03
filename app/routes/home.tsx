@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Popover, Button } from "@radix-ui/themes";
+import { Popover, Button, Tabs } from "@radix-ui/themes";
 import styles from "./home.module.css";
 import DisplayController from "../components/display-controller";
 import FlexboxSettings from "../components/flexbox-settings";
@@ -38,37 +38,48 @@ export default function Home() {
           <Button>Open Display Controls</Button>
         </Popover.Trigger>
         <Popover.Content>
-          <DisplayController value={displayValue} onValueChange={(value: string) => handleDisplayChange(value)} />
+          <Tabs.Root defaultValue="custom">
+            <Tabs.List>
+              <Tabs.Trigger value="presets">Presets</Tabs.Trigger>
+              <Tabs.Trigger value="custom">Custom</Tabs.Trigger>
+            </Tabs.List>
 
-          {isFlexDisplay && (
-            <FlexboxSettings
-              direction={flexDirection}
-              alignItems={alignItems}
-              justifyContent={justifyContent}
-              rowGap={rowGap}
-              columnGap={columnGap}
-              onDirectionChange={(value: string) => {
-                setFlexDirection(value);
-                handleFlexSettingsChange("direction", value);
-              }}
-              onAlignItemsChange={(value: string) => {
-                setAlignItems(value);
-                handleFlexSettingsChange("alignItems", value);
-              }}
-              onJustifyContentChange={(value: string) => {
-                setJustifyContent(value);
-                handleFlexSettingsChange("justifyContent", value);
-              }}
-              onRowGapChange={(value: number) => {
-                setRowGap(value);
-                handleFlexSettingsChange("rowGap", value);
-              }}
-              onColumnGapChange={(value: number) => {
-                setColumnGap(value);
-                handleFlexSettingsChange("columnGap", value);
-              }}
-            />
-          )}
+            <Tabs.Content value="presets">{/* Presets content will be added in future iterations */}</Tabs.Content>
+
+            <Tabs.Content value="custom">
+              <DisplayController value={displayValue} onValueChange={(value: string) => handleDisplayChange(value)} />
+
+              {isFlexDisplay && (
+                <FlexboxSettings
+                  direction={flexDirection}
+                  alignItems={alignItems}
+                  justifyContent={justifyContent}
+                  rowGap={rowGap}
+                  columnGap={columnGap}
+                  onDirectionChange={(value: string) => {
+                    setFlexDirection(value);
+                    handleFlexSettingsChange("direction", value);
+                  }}
+                  onAlignItemsChange={(value: string) => {
+                    setAlignItems(value);
+                    handleFlexSettingsChange("alignItems", value);
+                  }}
+                  onJustifyContentChange={(value: string) => {
+                    setJustifyContent(value);
+                    handleFlexSettingsChange("justifyContent", value);
+                  }}
+                  onRowGapChange={(value: number) => {
+                    setRowGap(value);
+                    handleFlexSettingsChange("rowGap", value);
+                  }}
+                  onColumnGapChange={(value: number) => {
+                    setColumnGap(value);
+                    handleFlexSettingsChange("columnGap", value);
+                  }}
+                />
+              )}
+            </Tabs.Content>
+          </Tabs.Root>
         </Popover.Content>
       </Popover.Root>
     </div>
