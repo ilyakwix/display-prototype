@@ -1,6 +1,7 @@
 import React from "react";
 import { SegmentedControl } from "@radix-ui/themes";
 import styles from "./flexbox-settings.module.css";
+import { ArrowDownIcon, ArrowLeft, ArrowLeftIcon, ArrowRightIcon, ArrowUpIcon } from "lucide-react";
 
 interface FlexboxSettingsProps {
   /**
@@ -62,11 +63,11 @@ interface FlexboxSettingsProps {
   onColumnGapChange: (value: number) => void;
 }
 
-const DIRECTION_OPTIONS = [
-  { label: "Row", value: "row" },
-  { label: "Column", value: "column" },
-  { label: "Row Reverse", value: "row-reverse" },
-  { label: "Column Reverse", value: "column-reverse" },
+const DIRECTION_OPTIONS: { label: React.ReactNode; value: string }[] = [
+  { label: <ArrowRightIcon size={16} strokeWidth={1.5} />, value: "row" },
+  { label: <ArrowDownIcon size={16} strokeWidth={1.5} />, value: "column" },
+  { label: <ArrowLeftIcon size={16} strokeWidth={1.5} />, value: "row-reverse" },
+  { label: <ArrowUpIcon size={16} strokeWidth={1.5} />, value: "column-reverse" },
 ];
 
 const ALIGN_ITEMS_OPTIONS = [
