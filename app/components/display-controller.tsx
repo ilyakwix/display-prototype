@@ -126,10 +126,6 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </div>
-
-      <Text size="2" className={styles.currentValue}>
-        Current: <strong>{value}</strong>
-      </Text>
     </div>
   );
 }
