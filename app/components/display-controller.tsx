@@ -98,10 +98,7 @@ export default function DisplayController({ value, onValueChange }: DisplayContr
   });
 
   const handleSegmentedChange = (newValue: string) => {
-    // Preserve "none" state - don't change if current value is "none" and new value is a primary option
-    if (value === "none" && PRIMARY_OPTIONS.some((option) => option.value === newValue)) {
-      return; // Don't change the value
-    }
+    // Always allow value changes - remove the blocking logic
     onValueChange(newValue);
   };
 
