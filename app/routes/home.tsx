@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { Popover, Button, Tabs, Inset } from "@radix-ui/themes";
+import { Popover, Button, Tabs, Inset, Grid, Flex, Reset } from "@radix-ui/themes";
 import styles from "./home.module.css";
 import DisplayController from "../components/display-controller";
 import FlexboxSettings from "../components/flexbox-settings";
+import { Columns2Icon, EyeOffIcon, Grid2X2Icon, Grid3X3Icon, Rows2Icon, SquareIcon } from "lucide-react";
+
+const layoutPresets = [
+  { label: "Box", value: "block", icon: <SquareIcon size={24} strokeWidth={1.5} /> },
+  { label: "Horizontal Stack", value: "flex", icon: <Columns2Icon size={24} strokeWidth={1.5} /> },
+  { label: "Vertical Stack", value: "flex", icon: <Rows2Icon size={24} strokeWidth={1.5} /> },
+  { label: "2x2 Grid", value: "grid", icon: <Grid2X2Icon size={24} strokeWidth={1.5} /> },
+  { label: "3x3 Grid", value: "grid", icon: <Grid3X3Icon size={24} strokeWidth={1.5} /> },
+  { label: "None", value: "none", icon: <EyeOffIcon size={24} strokeWidth={1.5} /> },
+];
 
 export default function Home() {
   const [displayValue, setDisplayValue] = useState("flex");
@@ -40,14 +50,27 @@ export default function Home() {
         <Popover.Content>
           <Inset clip="padding-box">
             <Tabs.Root defaultValue="custom">
-              <Tabs.List>
+              <Tabs.List size="1">
                 <Tabs.Trigger value="presets">Presets</Tabs.Trigger>
                 <Tabs.Trigger value="custom">Custom</Tabs.Trigger>
               </Tabs.List>
 
-              <Tabs.Content value="presets">{/* Presets content will be added in future iterations */}</Tabs.Content>
+              <Tabs.Content value="presets" className={styles.tabsContent}>
+                <Grid columns="1fr 1fr 1fr" gapX="4" gapY="8" py="4">
+                  {layoutPresets.map((preset) => (
+                    <Reset key={preset.value}>
+                      <button>
+                        <Flex direction="column" gapX="1" align="center">
+                          {preset.icon}
+                          {preset.label}
+                        </Flex>
+                      </button>
+                    </Reset>
+                  ))}
+                </Grid>
+              </Tabs.Content>
 
-              <Tabs.Content value="custom">
+              <Tabs.Content value="custom" className={styles.tabsContent}>
                 <DisplayController value={displayValue} onValueChange={(value: string) => handleDisplayChange(value)} />
 
                 {isFlexDisplay && (
