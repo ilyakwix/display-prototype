@@ -49,7 +49,7 @@ export default function Home() {
         </Popover.Trigger>
         <Popover.Content>
           <Inset clip="padding-box">
-            <Tabs.Root defaultValue="custom">
+            <Tabs.Root defaultValue="presets">
               <Tabs.List size="1">
                 <Tabs.Trigger value="presets">Presets</Tabs.Trigger>
                 <Tabs.Trigger value="custom">Custom</Tabs.Trigger>
